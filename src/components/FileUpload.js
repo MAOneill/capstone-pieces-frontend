@@ -9,6 +9,8 @@ export default class FileUpload extends Component {
         super(props);
         this.state={
             fileName:null,
+            userId:null,
+            userEmail:null,
         }
     }
   render() {
@@ -23,10 +25,22 @@ export default class FileUpload extends Component {
   }
 
   async componentDidMount() {
+
+
     const url = "/main/userid";
 
-      const userid = await axios.get(url);
-      console.log("front end using axios to retrie4ve session user id: ", userid);
+      const credentials = await axios.get(url);
+
+      if (credentials.userObject) {
+          console.log("front end using axios to retrie4ve session user id: ", credentials.data.userObject);
+    
+          this.setState({
+              userId:credentials.data.userObject.id,
+              userEmail:credentials.data.userObject.email,
+    
+          })
+
+      }
   }
 _changeFileName = (e) => {
     console.log("The file name is ,", e.target.files);
@@ -50,7 +64,8 @@ _getFormData = (e) => {
 
 _uploadFile = (file) => {
       console.log("_upload file running");
-const url = "/main/addurl";
+      //this will pass the user id in
+const url = `/main/addurl/${this.state.userId}`;
 const formData = new FormData();
 formData.append('file',file)
 const config = {
