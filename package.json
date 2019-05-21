@@ -3,10 +3,17 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "axios": "^0.18.0",
+    "express": "^4.17.0",
+    "express-es6-template-engine": "^2.1.9",
+    "express-fileupload": "^1.1.4",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
-    "react-scripts": "3.0.1"
+    "react-router-dom": "^5.0.0",
+    "react-scripts": "3.0.1",
+    "session-file-store": "^1.2.0"
   },
+  "proxy":"http://localhost:3100/",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
