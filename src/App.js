@@ -6,6 +6,7 @@ import SendScore from './components/SendScore';
 
 import axios, {post} from 'axios';
 import DisplayUserHighScore from './components/DisplayUserHighScore';
+import DisplayUserPhotos from './components/DisplayUserPhotos';
 
 axios.defaults.withCredentials = true
 
@@ -26,7 +27,7 @@ export default class App extends Component {
     return (
       <div className="App">
       <header className="App-header">
-        
+        <DisplayUserPhotos photos={this.state.pictureArray}/>
       <DisplayUserHighScore scores={this.state.scoreArray} />
         <FileUpload message={this.state.message} 
                   id={this.state.userId} 
