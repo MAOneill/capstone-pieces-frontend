@@ -3,8 +3,10 @@ import './App.css';
 import FileUpload from './components/FileUpload'
 import SendScore from './components/SendScore';
 
-import {Link, Route, Switch} from 'react-router-dom'
-import axios, {post} from 'axios';
+// import {Link, Route, Switch} from 'react-router-dom'
+import { Route, Switch} from 'react-router-dom'
+// import axios, {post} from 'axios';
+import axios from 'axios';
 import DisplayUserHighScore from './components/DisplayUserHighScore';
 import DisplayUserPhotos from './components/DisplayUserPhotos';
 import MenuBar from './components/MenuBar';
@@ -75,7 +77,7 @@ export default class App extends Component {
 async componentDidUpdate () {
 if (this.state.photoAdded) {
       const pictureArray = await axios.get("main/getphotos");
-      console.log("get picture ARray ran");
+      // console.log("get picture ARray ran");
 
       this.setState({
           photoAdded:false,
@@ -85,7 +87,7 @@ if (this.state.photoAdded) {
   }
 if (this.state.scoreAdded) {
   const scoreArray = await axios.get("main/getscore");
-  console.log("get score array ran")
+  // console.log("get score array ran")
   this.setState({
       photoAdded:false,
       scoreArray:scoreArray.data,
@@ -105,15 +107,15 @@ if (this.state.scoreAdded) {
 
       if (true) {
       // if (credentials.userObject) {
-          console.log("front end using axios to retrie4ve session user id: ", credentials.data.userObject);
+          // console.log("front end using axios to retrie4ve session user id: ", credentials.data.userObject);
     
           //if logged in, then get the user's pictures and scores.  save these to state
 
           const scoreArray = await axios.get("main/getscore");
-        console.log("get score array ran")
+        // console.log("get score array ran")
           
           const pictureArray = await axios.get("main/getphotos");
-        console.log("get picture ARray ran");
+        // console.log("get picture ARray ran");
           this.setState({
               userId:credentials.data.userObject.id,
               userEmail:credentials.data.userObject.email,

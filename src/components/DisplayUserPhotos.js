@@ -22,10 +22,10 @@ export default function DisplayUserPhotos(props) {
     <div className="photogrid">
 
         {props.photos.length ? 
-            props.photos.map((photo)=> (
-                <div className="gridbox">
+            props.photos.map((photo,i)=> (
+                <div key={i} className="gridbox">
                 <div className="eachphoto">
-                <img className="photoThumb" src={`./${photo.photoURL}`}></img>
+                <img className="photoThumb" src={`./${photo.photoURL}`} alt="user supplied"></img>
                 <input type="radio" name="photoToUse" value={photo.photoURL} 
                     onClick={(e) => {
                         props.handleSelectPhoto(e.target.value)
