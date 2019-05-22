@@ -8,6 +8,7 @@ import axios, {post} from 'axios';
 import DisplayUserHighScore from './components/DisplayUserHighScore';
 import DisplayUserPhotos from './components/DisplayUserPhotos';
 import MenuBar from './components/MenuBar';
+import Bubbles from './components/Bubbles';
 
 axios.defaults.withCredentials = true
 
@@ -16,6 +17,7 @@ export default class App extends Component {
   constructor(props){
     super(props);
     this.state={
+      instruction:"Select an action",
       userId:null,
       userEmail:null,
       photoAdded:false,
@@ -30,10 +32,14 @@ export default class App extends Component {
     return (
       <div className="App">
       <header className="App-header">
+      <h3>{this.state.instruction}</h3>
       <MenuBar />
       <Switch>
         {/* <Route exact path="/puzzle" component={Puzzle} /> */}
-        {/* <Route exact path="/bubbles" component={Bubbles} /> */}
+        <Route exact path="/bubbles" 
+              render={(props)=> (
+                <Bubbles userPhoto={this.state.selectedPhoto}/>
+              )} />
         <Route exact path="/guess" 
               render={(props) => (
                 <div>
@@ -145,6 +151,12 @@ if (this.state.scoreAdded) {
 _selectedPhoto = (url) => {
   this.setState({
     selectedPhoto:url,
+  })
+}
+
+_updateInstruction = (instruction) => {
+  this.setState({
+    instruction
   })
 }
 }

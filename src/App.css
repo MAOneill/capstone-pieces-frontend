@@ -60,3 +60,16 @@
   padding:5px;
   color:white;
 }
+
+
+#pictureframe {
+  /* width: 200px;
+  height: 200px; */
+  /* display:none; */
+}
+#pictureframe img {
+  object-fit:cover;
+  /* width:100%; */
+  width: 400px;
+  height: 400px;
+}
