@@ -17,7 +17,8 @@ export default class App extends Component {
     this.state={
       userId:null,
       userEmail:null,
-      componentUpdated:false,
+      photoAdded:false,
+      scoreAdded:false,
       message:null,
       pictureArray:[],
       scoreArray:[],
@@ -35,24 +36,46 @@ export default class App extends Component {
       <DisplayUserHighScore scores={this.state.scoreArray} />
         <FileUpload message={this.state.message} 
                   id={this.state.userId} 
-                  handleUpdate={this._compUpdated}
+                  handleUpdate={this._photoUpdated}
                   handleMessage={this._updateMessage}/>
         <SendScore message={this.state.message} 
                   id={this.state.userId}
-                  handleUpdate={this._compUpdated}
+                  handleUpdate={this._scoreUpdated}
                   handleMessage={this._updateMessage}/>
       </header>
     </div>
     )
   }
+async componentDidUpdate () {
+if (this.state.photoAdded) {
+      const pictureArray = await axios.get("main/getphotos");
+      console.log("get picture ARray ran");
+
+      this.setState({
+          photoAdded:false,
+          pictureArray:pictureArray.data,
+
+      })
+  }
+if (this.state.scoreAdded) {
+  const scoreArray = await axios.get("main/getscore");
+  console.log("get score array ran")
+  this.setState({
+      photoAdded:false,
+      scoreArray:scoreArray.data,
+  })
+
+    
+}
+
+}
 
   async componentDidMount() {
 
     //retrieve the userObject and pass it to state.
 
-    const url = "/main/userid";
 
-      const credentials = await axios.get(url);
+      const credentials = await axios.get("/main/userid");
 
       if (true) {
       // if (credentials.userObject) {
@@ -83,9 +106,14 @@ export default class App extends Component {
 
   }
 
-  _compUpdated = () => {
+  _photoUpdated = () => {
     this.setState({
-      componentUpdated:true,
+      photoAdded:true,
+    })
+  }
+  _scoreUpdated = () => {
+    this.setState({
+      scoreAdded:true
     })
   }
   _updateMessage = (message) => {
