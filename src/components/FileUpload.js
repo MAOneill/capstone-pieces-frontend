@@ -11,6 +11,7 @@ export default class FileUpload extends Component {
             fileName:null,
             userId:null,
             userEmail:null,
+            message:null,
         }
     }
   render() {
@@ -19,6 +20,7 @@ export default class FileUpload extends Component {
          <form id="myform"  encType="multipart/form-data">
         <input name="foo" onChange={this._changeFileName} type="file" accept="image/png, image/jpeg, image/jpg, image/gif"></input>
         <button type="submit" onClick={this._getFormData}>Submit</button>
+        <h4>{this.state.message}</h4>
         </form>
       </div>
     )
@@ -27,7 +29,7 @@ export default class FileUpload extends Component {
   async componentDidMount() {
 
 
-    const url = "/main/userid";
+    const url = "/main";
 
       const credentials = await axios.get(url);
 
@@ -52,20 +54,18 @@ _getFormData = (e) => {
     e.preventDefault();
     this._uploadFile(this.state.fileName)
         .then((response)=>{
-            console.log(response.data);
+            console.log("shoyld be a json rspons", response.data);
+
+            this.props.handleUpdate();
+            this.props.handleMessage(response.data.message)
         })
 
-    // console.log("getFormData running")
-    // const myform = document.getElementById('myform');
-
-    // const newformdata = new FormData(myform)
-    // console.log("my FormData",newformdata);
 }
 
 _uploadFile = (file) => {
       console.log("_upload file running");
       //this will pass the user id in
-const url = `/main/addurl/${this.state.userId}`;
+const url = `/main/addurl`;
 const formData = new FormData();
 formData.append('file',file)
 const config = {

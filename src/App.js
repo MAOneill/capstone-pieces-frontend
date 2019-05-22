@@ -15,6 +15,10 @@ export default class App extends Component {
     this.state={
       userId:null,
       userEmail:null,
+      componentUpdated:false,
+      message:null,
+      pictureArray:[],
+      scoreArray:[],
     }
   }
   render() {
@@ -23,8 +27,14 @@ export default class App extends Component {
       <header className="App-header">
         
 
-        <FileUpload id={this.state.userId}/>
-        <SendScore id={this.state.userId}/>
+        <FileUpload message={this.state.message} 
+                  id={this.state.userId} 
+                  handleUpdate={this._compUpdated}
+                  handleMessage={this._updateMessage}/>
+        <SendScore message={this.state.message} 
+                  id={this.state.userId}
+                  handleUpdate={this._compUpdated}
+                  handleMessage={this._updateMessage}/>
       </header>
     </div>
     )
@@ -41,15 +51,41 @@ export default class App extends Component {
       if (credentials.userObject) {
           console.log("front end using axios to retrie4ve session user id: ", credentials.data.userObject);
     
+          //if logged in, then get the user's pictures and scores.  save these to state
+          
+          const pictureArray = await axios.get("main/getphotos")
+
+          const scoreArray = await axios.get("main/getscore");
+
           this.setState({
               userId:credentials.data.userObject.id,
               userEmail:credentials.data.userObject.email,
+              pictureArray:pictureArray,
+              scoreArray:scoreArray,
     
           })
 
       }
+      else {
+        //this will only work when build is merged into backend
+        // window.location = "http://localhost:3100/login"
+        //use this in build:
+        // window.location = "/login"
+      }
 
   }
+
+  _compUpdated = () => {
+    this.setState({
+      componentUpdated:true,
+    })
+  }
+  _updateMessage = (message) => {
+    this.setState({
+      message
+    })
+  }
+
 }
 
 
