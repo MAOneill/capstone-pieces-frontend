@@ -60,7 +60,9 @@
   padding:5px;
   color:white;
 }
-
+#patterns {
+  width:1px;
+}
 
 #pictureframe {
   /* width: 200px;

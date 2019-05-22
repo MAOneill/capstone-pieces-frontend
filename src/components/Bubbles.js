@@ -1,4 +1,5 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import D3bubbles from './D3bubbles';
 
 export default class Bubbles extends Component {
     constructor(props) {
@@ -6,7 +7,7 @@ export default class Bubbles extends Component {
         this.state={
             patterns:[],
             dataObject:[],
-            numberOfCircles:2,
+            numberOfCircles:20,
             imageLoadSize:400,
         }
         this.width = parseInt(this.state.imageLoadSize / this.state.numberOfCircles)
@@ -24,7 +25,7 @@ export default class Bubbles extends Component {
         </div>
             
         <div >
-            <svg id="drawing"  viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
+            <svg id="patterns"  viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
 
 
 
@@ -52,7 +53,7 @@ export default class Bubbles extends Component {
         </defs>
         {/* circles go here */}
 
-        {this.state.dataObject.map((circle,i)=> (
+        {/* {this.state.dataObject.map((circle,i)=> (
             <circle key={i} r={circle.radius} 
                     cx={circle.x+(circle.pW/2)} 
                     cy={circle.y+(circle.pW/2)}
@@ -61,7 +62,7 @@ export default class Bubbles extends Component {
                     // fill="#499444"
                     >
 
-                    </circle>
+                    </circle> */}
         ))}
 
         </svg>
@@ -69,11 +70,9 @@ export default class Bubbles extends Component {
 
         
         <div className="svgcontainer">          
-        <svg id="drawing" 
-          viewBox="0 0 1000 1000"
-          xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
-            <defs></defs>    
-        </svg>
+        
+            <D3bubbles dataObject={this.state.dataObject}/>
+    
         </div>
 
 
@@ -122,9 +121,9 @@ export default class Bubbles extends Component {
 
       this.setState({
           patterns:allPatternImages,
-          dataObject,
-      })
-  }
+          dataObject:dataObject,
+      }) 
+}
 }
 
 
