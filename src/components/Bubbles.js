@@ -4,8 +4,8 @@ export default class Bubbles extends Component {
     constructor(props) {
         super(props);
         this.state={
-            patterns:[]
-
+            patterns:[],
+            dataObject:[],
         }
     }
   render() {
@@ -20,8 +20,13 @@ export default class Bubbles extends Component {
             }
         </div>
             
-        <div id="svgbox" data-div>
-            <svg>
+        <div >
+            <svg id="drawing"  viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
+
+
+
+
+                
         <defs>
 
 {/* THIS HAS TO BE A SEPARATE COMPONENT - SO IT ONLY RENDERS ONCE WHEN THE IMAGE LOADS */}
@@ -33,19 +38,31 @@ export default class Bubbles extends Component {
     // console.log("pattern id is :", randomPatternId, patternKeyArray[randomPatternId])
     // patternKeyArray.splice((randomPatternId),1); */}
 
-
-
             {this.state.patterns.map((pattern,i) => (
                 <pattern id={`pattern${i+1}`} key={i} patternUnits="objectBoundingBox" width="100%" height="100%">
-                    <image xlinkHref={pattern.href.baseVal}>
+                    <image width="200px" height="200px" xlinkHref={pattern.href.baseVal}
+                    // <image href={pattern.href.baseVal}
+                    >
 
                     </image>
                 </pattern>
             ))}
         </defs>
+        {/* circles go here */}
+
+        {this.state.dataObject.map((circle,i)=> (
+            <circle key={i} r={circle.radius} 
+                    cx={circle.x+(circle.pW/2)} 
+                    cy={circle.y+(circle.pW/2)}
+                    // fill={`url(pattern${i+1})`}
+                    fill={`url(`+ window.location.origin + window.location.pathname + `#pattern${i+1})`}
+                    // fill="#499444"
+                    >
+
+                    </circle>
+        ))}
+
         </svg>
-
-
         </div>
 
         
@@ -99,7 +116,7 @@ export default class Bubbles extends Component {
       const allPatternImages = []
       dataObject.forEach((d,i) => {
           allPatternImages.push(createPatterns(oCtx,tempCanvas,d.x,d.y,d.pW,d.pH,i+1))
-          createSVGCircles(d.x,d.y,d.pW,d.pH,i+1)
+        //   createSVGCircles(d.x,d.y,d.pW,d.pH,i+1)
       })
       console.log(allPatternImages);
     //   createD3(numberOfCircles)
@@ -109,9 +126,13 @@ export default class Bubbles extends Component {
 
       this.setState({
           patterns:allPatternImages,
+          dataObject,
       })
   }
 }
+
+        
+
 
 
 function loadImageToCanvas(loadedImage,canvasWidth, canvasHeight) {
