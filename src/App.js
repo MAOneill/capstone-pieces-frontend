@@ -3,7 +3,7 @@ import './App.css';
 import FileUpload from './components/FileUpload'
 import SendScore from './components/SendScore';
 
-
+import {Link, Route, Switch} from 'react-router-dom'
 import axios, {post} from 'axios';
 import DisplayUserHighScore from './components/DisplayUserHighScore';
 import DisplayUserPhotos from './components/DisplayUserPhotos';
@@ -31,18 +31,37 @@ export default class App extends Component {
       <div className="App">
       <header className="App-header">
       <MenuBar />
-          <h2>select a photo to use:</h2>
-        <DisplayUserPhotos photos={this.state.pictureArray}
+      <Switch>
+        {/* <Route exact path="/puzzle" component={Puzzle} /> */}
+        {/* <Route exact path="/bubbles" component={Bubbles} /> */}
+        <Route exact path="/guess" 
+              render={(props) => (
+                <div>
+                <DisplayUserHighScore scores={this.state.scoreArray} />
+                <SendScore message={this.state.message} 
+                          id={this.state.userId}
+                          handleUpdate={this._scoreUpdated}
+                          handleMessage={this._updateMessage}/>
+              </div>
+
+              )} />
+        <Route exact path="/uploadphotos" 
+        render={(props) => (
+          <div>
+            <h2>select a photo to use:</h2>
+            <DisplayUserPhotos photos={this.state.pictureArray}
                       handleSelectPhoto={this._selectedPhoto}/>
-      <DisplayUserHighScore scores={this.state.scoreArray} />
-        <FileUpload message={this.state.message} 
-                  id={this.state.userId} 
-                  handleUpdate={this._photoUpdated}
-                  handleMessage={this._updateMessage}/>
-        <SendScore message={this.state.message} 
-                  id={this.state.userId}
-                  handleUpdate={this._scoreUpdated}
-                  handleMessage={this._updateMessage}/>
+            <FileUpload message={this.state.message} 
+                      id={this.state.userId} 
+                      handleUpdate={this._photoUpdated}
+                      handleMessage={this._updateMessage}/>
+          </div>
+
+        )
+                }   />
+
+
+      </Switch>
       </header>
     </div>
     )
