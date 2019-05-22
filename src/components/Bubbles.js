@@ -7,7 +7,7 @@ export default class Bubbles extends Component {
         this.state={
             patterns:[],
             dataObject:[],
-            numberOfCircles:20,
+            numberOfCircles:3,
             imageLoadSize:400,
         }
         this.width = parseInt(this.state.imageLoadSize / this.state.numberOfCircles)
