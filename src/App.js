@@ -7,6 +7,7 @@ import SendScore from './components/SendScore';
 import axios, {post} from 'axios';
 import DisplayUserHighScore from './components/DisplayUserHighScore';
 import DisplayUserPhotos from './components/DisplayUserPhotos';
+import MenuBar from './components/MenuBar';
 
 axios.defaults.withCredentials = true
 
@@ -29,7 +30,7 @@ export default class App extends Component {
     return (
       <div className="App">
       <header className="App-header">
-      
+      <MenuBar />
           <h2>select a photo to use:</h2>
         <DisplayUserPhotos photos={this.state.pictureArray}
                       handleSelectPhoto={this._selectedPhoto}/>

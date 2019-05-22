@@ -54,7 +54,7 @@ _getFormData = (e) => {
     e.preventDefault();
     this._uploadFile(this.state.fileName)
         .then((response)=>{
-            console.log("shoyld be a json rspons", response.data);
+            console.log("should be a json rspons", response.data);
 
             this.props.handleUpdate();
             this.props.handleMessage(response.data.message)

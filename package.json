@@ -13,11 +13,10 @@
     "react-scripts": "3.0.1",
     "session-file-store": "^1.2.0"
   },
-  "proxy":"http://localhost:3100/",
+  "proxy": "http://localhost:3100/",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build && cp -R ./build/* ../backend/public/",
-
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
