@@ -32,19 +32,25 @@
   }
 }
 
+.photoComponent{
+  width:80%;
+  overflow-x: scroll;
 
+}
 .photogrid {
   display:flex;
-  flex-wrap: wrap;
+  /* flex-wrap: wrap; */
 
 }
 .gridbox {
   width:300px;
   height:300px;
+  padding:10px;
 }
 .eachphoto {
   width:200px;
   height: 200px;
+
 }
 .eachphoto img {
   width:100%;

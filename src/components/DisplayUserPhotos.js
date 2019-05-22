@@ -15,8 +15,10 @@ export default function DisplayUserPhotos(props) {
     console.log(photoURL);
 
   return (
-    <div>  
-        <h2>select a photo to use:</h2>
+    
+      
+    <div className="photoComponent">  
+        
     <div className="photogrid">
 
         {props.photos.length ? 
@@ -45,6 +47,7 @@ export default function DisplayUserPhotos(props) {
     
     </div>
     </div>
+    
   )
 
 }

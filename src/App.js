@@ -28,6 +28,8 @@ export default class App extends Component {
     return (
       <div className="App">
       <header className="App-header">
+      
+          <h2>select a photo to use:</h2>
         <DisplayUserPhotos photos={this.state.pictureArray}
                       handleSelectPhoto={this._selectedPhoto}/>
       <DisplayUserHighScore scores={this.state.scoreArray} />
