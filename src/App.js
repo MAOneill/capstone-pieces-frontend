@@ -21,13 +21,15 @@ export default class App extends Component {
       message:null,
       pictureArray:[],
       scoreArray:[],
+      selectedPhoto:null,
     }
   }
   render() {
     return (
       <div className="App">
       <header className="App-header">
-        <DisplayUserPhotos photos={this.state.pictureArray}/>
+        <DisplayUserPhotos photos={this.state.pictureArray}
+                      handleSelectPhoto={this._selectedPhoto}/>
       <DisplayUserHighScore scores={this.state.scoreArray} />
         <FileUpload message={this.state.message} 
                   id={this.state.userId} 
@@ -90,6 +92,11 @@ export default class App extends Component {
     })
   }
 
+_selectedPhoto = (url) => {
+  this.setState({
+    selectedPhoto:url,
+  })
+}
 }
 
 
