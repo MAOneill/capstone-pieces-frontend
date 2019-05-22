@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 
 import axios, {post} from 'axios';
-import { async } from 'q';
+// import { async } from 'q';
 
 export default class SendScore extends Component {
     constructor(props) {

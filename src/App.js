@@ -5,6 +5,7 @@ import SendScore from './components/SendScore';
 
 
 import axios, {post} from 'axios';
+import DisplayUserHighScore from './components/DisplayUserHighScore';
 
 axios.defaults.withCredentials = true
 
@@ -26,7 +27,7 @@ export default class App extends Component {
       <div className="App">
       <header className="App-header">
         
-
+      <DisplayUserHighScore scores={this.state.scoreArray} />
         <FileUpload message={this.state.message} 
                   id={this.state.userId} 
                   handleUpdate={this._compUpdated}
@@ -48,20 +49,22 @@ export default class App extends Component {
 
       const credentials = await axios.get(url);
 
-      if (credentials.userObject) {
+      if (true) {
+      // if (credentials.userObject) {
           console.log("front end using axios to retrie4ve session user id: ", credentials.data.userObject);
     
           //if logged in, then get the user's pictures and scores.  save these to state
-          
-          const pictureArray = await axios.get("main/getphotos")
 
           const scoreArray = await axios.get("main/getscore");
-
+        console.log("get score array ran")
+          
+          const pictureArray = await axios.get("main/getphotos");
+        console.log("get picture ARray ran");
           this.setState({
               userId:credentials.data.userObject.id,
               userEmail:credentials.data.userObject.email,
-              pictureArray:pictureArray,
-              scoreArray:scoreArray,
+              pictureArray:pictureArray.data,
+              scoreArray:scoreArray.data,
     
           })
 
