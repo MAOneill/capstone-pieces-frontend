@@ -7,6 +7,7 @@ export default function DisplayUserPhotos(props) {
     if (props.photos.length) {
 
         photoURL = props.photos[0].photoURL
+        
     }
     else {
         photoURL = null;
@@ -14,9 +15,33 @@ export default function DisplayUserPhotos(props) {
     console.log(photoURL);
 
   return (
-    <div>
-        <img src={`./${photoURL}`}></img>
-      {photoURL}
+    <div>  
+        <h2>select a photo to use:</h2>
+    <div className="photogrid">
+
+        {props.photos.length ? 
+            props.photos.map((photo)=> (
+                <div className="gridbox">
+                <div className="eachphoto">
+                <img className="photoThumb" src={`./${photo.photoURL}`}></img>
+                <input type="radio" name="photoToUse" value={photo.photoURL} /> 
+                {/* <h5>{photo.photoURL}</h5> */}
+                </div>
+                </div>
+                
+            ))
+        : null
+        }
+        {(props.photos.length === 0) ? 
+        <div className="gridbox">
+            <div className = "eachphoto">
+                <h4>You don't have any pictures</h4>
+                </div>
+         </div>:
+        null}
+    
+    </div>
     </div>
   )
+
 }
