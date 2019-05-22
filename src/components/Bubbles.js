@@ -6,7 +6,10 @@ export default class Bubbles extends Component {
         this.state={
             patterns:[],
             dataObject:[],
+            numberOfCircles:2,
+            imageLoadSize:400,
         }
+        this.width = parseInt(this.state.imageLoadSize / this.state.numberOfCircles)
     }
   render() {
     return (
@@ -40,8 +43,7 @@ export default class Bubbles extends Component {
 
             {this.state.patterns.map((pattern,i) => (
                 <pattern id={`pattern${i+1}`} key={i} patternUnits="objectBoundingBox" width="100%" height="100%">
-                    <image width="200px" height="200px" xlinkHref={pattern.href.baseVal}
-                    // <image href={pattern.href.baseVal}
+                    <image width={`${this.width}px`} height={`${this.width}px`} xlinkHref={pattern.href.baseVal}
                     >
 
                     </image>
@@ -85,18 +87,16 @@ export default class Bubbles extends Component {
   _imgOnLoad = () => {
       console.log("Image Loaded");
 
-      const myImage = new Image(400,400);   
+      const myImage = new Image(this.state.imageLoadSize,this.state.imageLoadSize);   
 
     this.props.userPhoto ?  myImage.src = `./${this.props.userPhoto}`:myImage.src = "./photos/bug.jpg"   ;
     //   console.log(myImage);
       const size = myImage.width
     //   console.log(size);
 
-      //grab the svg elements:
-
       
       //set contants
-      const numberOfCircles = 2;
+      const numberOfCircles = this.state.numberOfCircles;
     //   const svgNS = "http://www.w3.org/2000/svg"
 
       //this was used to randomize the patterns:
@@ -108,7 +108,7 @@ export default class Bubbles extends Component {
       //create patterns and load them to state
 
       const oCtx =  loadImageToCanvas(myImage ,size, size)
-      const patternWidth = parseInt(size/numberOfCircles)
+      const patternWidth = parseInt(size/numberOfCircles) //same as this.width
       const dataObject = createDataArray(numberOfCircles,patternWidth,patternWidth)
     
       const tempCanvas = createTempCanvas(patternWidth,patternWidth);
@@ -116,12 +116,8 @@ export default class Bubbles extends Component {
       const allPatternImages = []
       dataObject.forEach((d,i) => {
           allPatternImages.push(createPatterns(oCtx,tempCanvas,d.x,d.y,d.pW,d.pH,i+1))
-        //   createSVGCircles(d.x,d.y,d.pW,d.pH,i+1)
       })
-      console.log(allPatternImages);
     //   createD3(numberOfCircles)
-
-
 
 
       this.setState({
@@ -130,9 +126,6 @@ export default class Bubbles extends Component {
       })
   }
 }
-
-        
-
 
 
 function loadImageToCanvas(loadedImage,canvasWidth, canvasHeight) {
@@ -161,7 +154,6 @@ function createDataArray(numberOfCircles, patternWidth, patternHeight) {
                 })
         }
     }
-    // console.log(dataObj);
     return dataObj;
 }
 
@@ -170,11 +162,11 @@ function createTempCanvas(patternWidth,patternHeight) {
     const tCanvas = document.createElement('canvas');
     tCanvas.width = patternWidth;
     tCanvas.height = patternHeight;
-    // return {tCanvas, tCtx};
     return tCanvas
 }
 
 function createPatterns(oCtx, tCanvas, patternX, patternY, patternWidth, patternHeight,i) {
+    //this creates the images that will be loaded into the svg/defs/patterns
     const svgNS = "http://www.w3.org/2000/svg"
 
     const patternImgData = oCtx.getImageData(patternX, patternY, patternWidth, patternHeight );
@@ -182,21 +174,13 @@ function createPatterns(oCtx, tCanvas, patternX, patternY, patternWidth, pattern
 
     tCtx.putImageData(patternImgData, 0, 0);
     const imagePattern = tCanvas.toDataURL("image/jpeg",.4);
-
-    //this is much larger.  I tried it again to see if safari would read the background.  but no.
-    // const  imagePattern = tCanvas.toDataURL("image/png");
+    // const  imagePattern = tCanvas.toDataURL("image/png"); //much larger
 
     //create the svg namespace image element
     const svg_img = document.createElementNS(svgNS, "image");
         //and assign the pattern data
         svg_img.setAttributeNS("http://www.w3.org/1999/xlink", "xlink:href", imagePattern);
 
-    // writeImgToBody(imagePattern)  //for testing
-
-// globalSvgImg = svg_img
-// console.log(globalSvgImg)
-
-    // defs.appendChild(pattern);
     return svg_img;
 
 }
