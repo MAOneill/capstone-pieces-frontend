@@ -11,6 +11,7 @@ import DisplayUserHighScore from './components/DisplayUserHighScore';
 import DisplayUserPhotos from './components/DisplayUserPhotos';
 import MenuBar from './components/MenuBar';
 import Bubbles from './components/Bubbles';
+import PhotoActions from './components/PhotoActions';
 
 axios.defaults.withCredentials = true
 
@@ -19,7 +20,7 @@ export default class App extends Component {
   constructor(props){
     super(props);
     this.state={
-      instruction:"Select an action",
+      instruction:null,
       userId:null,
       userEmail:null,
       photoAdded:false,
@@ -56,13 +57,18 @@ export default class App extends Component {
         <Route exact path="/uploadphotos" 
         render={(props) => (
           <div>
-            <h2>select a photo to use:</h2>
-            <DisplayUserPhotos photos={this.state.pictureArray}
-                      handleSelectPhoto={this._selectedPhoto}/>
+            <h2>select or upload a photo to use:</h2>
+            <div className="flexbox">
             <FileUpload message={this.state.message} 
                       id={this.state.userId} 
                       handleUpdate={this._photoUpdated}
                       handleMessage={this._updateMessage}/>
+
+              <DisplayUserPhotos photos={this.state.pictureArray}
+                        handleSelectPhoto={this._selectedPhoto}/>
+
+            <PhotoActions selectedPhoto={this.state.selectedPhoto} />
+            </div>
           </div>
 
         )
@@ -146,7 +152,7 @@ if (this.state.scoreAdded) {
   }
   _updateMessage = (message) => {
     this.setState({
-      message
+      message:message,
     })
   }
 

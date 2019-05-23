@@ -17,15 +17,25 @@ export default class FileUpload extends Component {
   render() {
     return (
       <div>
-         <form id="myform"  encType="multipart/form-data">
-        <input name="foo" onChange={this._changeFileName} type="file" accept="image/png, image/jpeg, image/jpg, image/gif"></input>
+         <form id="myform" 
+        //  this creates a reference in react to my form element, so I can reset it.
+         ref={form => this.form = form}
+         encType="multipart/form-data">
+        <input name="foo" 
+        onChange={this._changeFileName} 
+        type="file"         
+        accept="image/png, image/jpeg, image/jpg"></input>
         <button type="submit" onClick={this._getFormData}>Submit</button>
-        <h4>{this.state.message}</h4>
+
+        <h4>{this.props.message}</h4>
         </form>
       </div>
     )
   }
 
+  componentDidUpdate() {
+
+  }
   async componentDidMount() {
 
 
@@ -45,7 +55,7 @@ export default class FileUpload extends Component {
       }
   }
 _changeFileName = (e) => {
-    console.log("The file name is ,", e.target.files);
+    // console.log("The file name is ,", e.target.files);
     this.setState({
         fileName:e.target.files[0]
     })
@@ -57,8 +67,13 @@ _getFormData = (e) => {
             console.log("should be a json rspons", response.data);
 
             this.props.handleUpdate();
-            this.props.handleMessage(response.data.message)
+            this.props.handleMessage(response.data.message);
+            //this will clear the file name after it is uploaded
+            this.form.reset();
+
         })
+
+
 
 }
 

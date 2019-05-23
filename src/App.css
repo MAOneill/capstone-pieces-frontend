@@ -31,9 +31,14 @@
     transform: rotate(360deg);
   }
 }
-
+.flexbox {
+  display:flex;
+  width:95%;
+}
 .photoComponent{
-  width:80%;
+  width:600px;
+  width:80vw;
+  /* width can't be a percentage for the scroll box to work???? */
   overflow-x: scroll;
 
 }
@@ -59,6 +64,7 @@
 .navelement {
   padding:5px;
   color:white;
+  margin: 5px;
 }
 #patterns {
   width:1px;  
@@ -75,3 +81,40 @@
   width: 400px;
   height: 400px;
 }
+.bright {
+  background-color: yellow;
+ filter: brightness(1.2);
+ text-decoration: none;
+ color:black;
+}
+.dull {
+  background-color:grey;
+ filter: brightness(.8);
+ text-decoration: none;
+
+}
+
+
+/* ********** MEDIA QUERIES ******************* */
+
+/* Landscape */
+@media screen and (orientation:landscape) {
+	.flexbox {
+    flex-direction: column;
+   }
+}
+ /* Portrait styles */
+ @media screen and (orientation:portrait) {
+	.flexbox {
+    flex-direction: column;
+   }
+
+}
+  @media (pointer: coarse) {
+    .menu {
+        display:none;
+    } }
+
+
+
+
