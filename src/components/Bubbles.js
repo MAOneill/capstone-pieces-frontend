@@ -25,47 +25,36 @@ export default class Bubbles extends Component {
         </div>
             
         <div >
-            <svg id="patterns"  viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
+            <svg id="patterns"  viewBox="0 0 800 800" 
+            xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
 
+                    
+                <defs>
 
+                {/* THIS HAS TO BE A SEPARATE COMPONENT - SO IT ONLY RENDERS ONCE WHEN THE IMAGE LOADS */}
+                {/* OR - DON'T USE ONLOAD FOR IMAGE - PUT THIS ALL IN COMPONENT DID MOUNT... */}
 
+                    {this.state.patterns.map((pattern,i) => (
+                        <pattern id={`pattern${i+1}`} key={i} patternUnits="objectBoundingBox" width="100%" height="100%">
+                            <image width={`${this.width}px`} height={`${this.width}px`} xlinkHref={pattern.href.baseVal}
+                            >
 
-                
-        <defs>
-
-{/* THIS HAS TO BE A SEPARATE COMPONENT - SO IT ONLY RENDERS ONCE WHEN THE IMAGE LOADS */}
-{/* OR - DON'T USE ONLOAD FOR IMAGE - PUT THIS ALL IN COMPONENT DID MOUNT... */}
-{/* // let randomPatternId =parseInt((Math.random() * patternKeyArray.length)) ; 
-    //this randomized the name of the pattern
-    //this will be important in the guess game
-    // pattern.setAttribute('id', `pattern${patternKeyArray[randomPatternId]}`);
-    // console.log("pattern id is :", randomPatternId, patternKeyArray[randomPatternId])
-    // patternKeyArray.splice((randomPatternId),1); */}
-
-            {this.state.patterns.map((pattern,i) => (
-                <pattern id={`pattern${i+1}`} key={i} patternUnits="objectBoundingBox" width="100%" height="100%">
-                    <image width={`${this.width}px`} height={`${this.width}px`} xlinkHref={pattern.href.baseVal}
-                    >
-
-                    </image>
-                </pattern>
-            ))}
-        </defs>
-        {/* circles go here */}
-
-        {/* {this.state.dataObject.map((circle,i)=> (
-            <circle key={i} r={circle.radius} 
-                    cx={circle.x+(circle.pW/2)} 
-                    cy={circle.y+(circle.pW/2)}
-                    // fill={`url(pattern${i+1})`}
-                    fill={`url(`+ window.location.origin + window.location.pathname + `#pattern${i+1})`}
-                    // fill="#499444"
-                    >
-
-                    </circle> */}
-        ))}
-
-        </svg>
+                            </image>
+                        </pattern>
+                    ))}
+                </defs>
+                        {/* circles go here , but we aren't using these*/}
+                        {/* {this.state.dataObject.map((circle,i)=> (
+                            <circle key={i} r={circle.radius} 
+                                    cx={circle.x+(circle.pW/2)} 
+                                    cy={circle.y+(circle.pW/2)}
+                                    // fill={`url(pattern${i+1})`}
+                                    fill={`url(`+ window.location.origin + window.location.pathname + `#pattern${i+1})`}
+                                    // fill="#499444"
+                                    >
+                                    </circle>
+                        ))} */}
+            </svg>
         </div>
 
         
@@ -74,10 +63,6 @@ export default class Bubbles extends Component {
             <D3bubbles dataObject={this.state.dataObject}/>
     
         </div>
-
-
-
-
 
       </div>
     )
@@ -96,14 +81,6 @@ export default class Bubbles extends Component {
       
       //set contants
       const numberOfCircles = this.state.numberOfCircles;
-    //   const svgNS = "http://www.w3.org/2000/svg"
-
-      //this was used to randomize the patterns:
-      //removing for now, it has to be a global variable that the function can see...
-    //   const patternKeyArray = [...Array(numberOfCircles*numberOfCircles + 1).keys()]
-    //   patternKeyArray.splice(0,1);  //remove the first zero
-
-
       //create patterns and load them to state
 
       const oCtx =  loadImageToCanvas(myImage ,size, size)
