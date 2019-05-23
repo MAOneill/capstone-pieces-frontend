@@ -2,6 +2,12 @@ import React, { Component } from 'react'
 import * as d3 from "d3";
 
 export default class D3bubbles extends Component {
+  constructor(props) {
+    super(props);
+    this.state={
+      tempDataObject:null,
+    }
+  }
   render() {
     return (
       <div>
@@ -22,8 +28,24 @@ export default class D3bubbles extends Component {
 
   componentDidMount(){
     this._createD3bubbles();
+    console.log("component DID MOUNT RAN");
+    this.setState({
+      tempDataObject:this.props.dataObject,
+    })
+
   }
   componentDidUpdate(){
+    console.log("componentDidUpdate ran in d3");
+
+    if (this.state.tempDataObject !== this.props.dataObject ) {
+      //reset the entire d3 object
+        const node = this.node   
+        let svg = d3.select(node)
+        svg.selectAll("circle").remove();
+        this.setState({
+          tempDataObject:this.props.dataObject,
+        })
+    }
     this._createD3bubbles();
   }
   _createD3bubbles = () => {
@@ -32,6 +54,7 @@ export default class D3bubbles extends Component {
     // console.log(this.node);
     const dataObject = this.props.dataObject;
 
+  
     const nodes = [{x:1,y:1,pw:100,ph:100,radius:0}, ...dataObject]
    
     //this should really equal my viewbox size in Bubble.js
@@ -57,11 +80,12 @@ export default class D3bubbles extends Component {
     
     let svg = d3.select(node)
     
-    
+
     svg.selectAll("circle")     
         .data(nodes.slice(1))
         // .data(nodes)
-      .enter().append("circle")
+      .enter()
+      .append("circle")
         .attr("r", function(d) { return d.radius; })
         // .style("fill", function(d, i) { return color(i % 3); })
         .style("fill", function(d,i) {return `url(`+ window.location.origin + window.location.pathname + `#pattern${i+1})`});
