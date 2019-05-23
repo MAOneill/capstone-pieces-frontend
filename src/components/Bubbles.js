@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import D3bubbles from './D3bubbles';
+import {createRandomArray} from '../utils';
 
 export default class Bubbles extends Component {
     constructor(props) {
@@ -70,6 +71,7 @@ export default class Bubbles extends Component {
 
   _imgOnLoad = () => {
       console.log("Image Loaded");
+// let testARray = createRandomArray(100);
 
       const myImage = new Image(this.state.imageLoadSize,this.state.imageLoadSize);   
 

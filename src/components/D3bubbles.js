@@ -38,7 +38,7 @@ export default class D3bubbles extends Component {
          height = 1000;
 
      const   root = nodes[0];
-     const   color = d3.scale.category10();
+    //  const   color = d3.scale.category10();
     
     root.radius = 0;
     root.fixed = true;

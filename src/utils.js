@@ -1,23 +1,26 @@
 function createRandomArray(n) {
 
+    //this creates an array of integers from 1 to n.
+    //these integers are then randomized inside the array.
+    //note you will have keys from 0 to n-1.  Length will be n.
+    const patternKeyArray = [...Array(n + 1).keys()]
 
+    patternKeyArray.splice(0,1);  //remove the first zero
 
-    // let randomPatternId =parseInt((Math.random() * patternKeyArray.length)) ; 
-    //this randomized the name of the pattern
-    //this will be important in the guess game
-    // pattern.setAttribute('id', `pattern${patternKeyArray[randomPatternId]}`);
-    // console.log("pattern id is :", randomPatternId, patternKeyArray[randomPatternId])
-    // patternKeyArray.splice((randomPatternId),1);
+    let randomArray = [];
+    
+    for (let i=0; i < n ; i++) {
+        //take a random number from patternKeyArray and push it to random array:
+        let randomKey = parseInt((Math.random() * patternKeyArray.length));
+        randomArray.push(patternKeyArray[randomKey])
+        // remove that randomKey from patternKeyArray
+        patternKeyArray.splice((randomKey),1);
+    }
+    // console.log(patternKeyArray, "should be empty");
+    // console.log(randomArray, `should have ${n} values`);
 
-
-        //   const svgNS = "http://www.w3.org/2000/svg"
-
-      //this was used to randomize the patterns:
-      //removing for now, it has to be a global variable that the function can see...
-    //   const patternKeyArray = [...Array(numberOfCircles*numberOfCircles + 1).keys()]
-    //   patternKeyArray.splice(0,1);  //remove the first zero
-
-
+  
+return randomArray;
 
 
 }
