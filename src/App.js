@@ -52,7 +52,9 @@ export default class App extends Component {
                           id={this.state.userId}
                           handleUpdate={this._scoreUpdated}
                           handleMessage={this._updateMessage}/>
-                <Guess />
+                <Guess 
+                handleUpdate={this._scoreUpdated}
+                handleMessage={this._updateMessage}/>
               </div>
 
               )} />
@@ -99,6 +101,7 @@ if (this.state.scoreAdded) {
   this.setState({
       photoAdded:false,
       scoreArray:scoreArray.data,
+      scoreAdded:false,
   })
 
     
