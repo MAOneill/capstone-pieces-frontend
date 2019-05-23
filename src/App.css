@@ -58,8 +58,11 @@
 
 }
 .eachphoto img {
-  width:100%;
-  object-fit: contain;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-fit: fill;
+
 }
 .navelement {
   padding:5px;
@@ -71,15 +74,36 @@
 }
 
 #pictureframe {
-  /* width: 200px;
-  height: 200px; */
-  /* display:none; */
+  object-fit:cover;
+  /* THIS DETERMINES THE CIRCLE OVER ALL SIZE.... */
+  width: 400px;
+  height: 400px;
+  /* YOU CAN HIDE THE VISIBILITY AND THE FUNCTIONALITY WILL STILL WORK */
+}
+.hidethis {
+  visibility: hidden;
+  /* display: none; */
+
+}
+
+.guessGrid {
+  display: grid;
+  grid-template-columns: 60% 40%;
 }
 #pictureframe img {
   object-fit:cover;
+  /* fill is best - it will mimic what the slicing will do */
+  object-fit: fill; 
   /* width:100%; */
   width: 400px;
-  height: 400px;
+  height: 400px; 
+}
+.guessingsize {
+  width:80vh;
+}
+.answerlist {
+  list-style: none;
+  text-align: left;
 }
 .bright {
   background-color: yellow;

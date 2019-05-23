@@ -12,6 +12,7 @@ import DisplayUserPhotos from './components/DisplayUserPhotos';
 import MenuBar from './components/MenuBar';
 import Bubbles from './components/Bubbles';
 import PhotoActions from './components/PhotoActions';
+import Guess from './components/Guess';
 
 axios.defaults.withCredentials = true
 
@@ -51,6 +52,7 @@ export default class App extends Component {
                           id={this.state.userId}
                           handleUpdate={this._scoreUpdated}
                           handleMessage={this._updateMessage}/>
+                <Guess />
               </div>
 
               )} />

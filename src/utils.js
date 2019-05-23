@@ -1,11 +1,17 @@
-function createRandomArray(n) {
+function createRandomArray(n,zeroIndex=false) {
 
     //this creates an array of integers from 1 to n.
     //these integers are then randomized inside the array.
     //note you will have keys from 0 to n-1.  Length will be n.
-    const patternKeyArray = [...Array(n + 1).keys()]
 
-    patternKeyArray.splice(0,1);  //remove the first zero
+    let patternKeyArray=[]
+    if (!zeroIndex) {
+        patternKeyArray = [...Array(n+1).keys()]
+        patternKeyArray.splice(0,1);  //remove the first zero 
+    }
+    else {
+        patternKeyArray = [...Array(n).keys()]
+    }
 
     let randomArray = [];
     

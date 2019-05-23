@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import D3bubbles from './D3bubbles';
-import {createRandomArray} from '../utils';
+// import {createRandomArray} from '../utils';
 
 export default class Bubbles extends Component {
     constructor(props) {
@@ -17,16 +17,11 @@ export default class Bubbles extends Component {
     return (
       <div>
         
-        <div id="pictureframe" data-div>
-            
-            {this.props.userPhoto ? 
-            <img  id="myimg" onLoad={this._imgOnLoad} src={`./${this.props.userPhoto}`} alt="user supplied"></img>
-            : <img id="myimg" onLoad={this._imgOnLoad} src="./photos/bug.jpg" alt="default "></img>
-            }
-        </div>
             
         <div >
-            <svg id="patterns"  viewBox="0 0 800 800" 
+            <svg id="patterns" 
+            viewBox={`0 0 ${this.state.imageLoadSize * 2} ${this.state.imageLoadSize * 2}` }
+            // viewBox="0 0 800 800" 
             xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
 
                     
@@ -61,8 +56,18 @@ export default class Bubbles extends Component {
         
         <div className="svgcontainer">          
         
-            <D3bubbles dataObject={this.state.dataObject}/>
+            <D3bubbles dataObject={this.state.dataObject}
+             viewsize={(this.state.imageLoadSize * 2)}/>
     
+        </div>
+
+
+        <div id="pictureframe" data-div>
+            
+            {this.props.userPhoto ? 
+            <img  id="myimg" onLoad={this._imgOnLoad} src={`./${this.props.userPhoto}`} alt="user supplied"></img>
+            : <img id="myimg" onLoad={this._imgOnLoad} src="./photos/bug.jpg" alt="default "></img>
+            }
         </div>
 
       </div>

@@ -8,7 +8,8 @@ export default class D3bubbles extends Component {
 
 
 <svg id="drawing" ref={node => this.node = node}
-          viewBox="0 0 1000 1000"
+          // viewBox="0 0 1000 1000"
+          viewBox = {`0 0 ${this.props.viewsize} ${this.props.viewsize}`}
           xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink"
           onMouseMove={this._thisMouseMove}>
 
@@ -34,8 +35,8 @@ export default class D3bubbles extends Component {
     const nodes = [{x:1,y:1,pw:100,ph:100,radius:0}, ...dataObject]
    
     //this should really equal my viewbox size in Bubble.js
-    const width = 1000,
-         height = 1000;
+    const width = this.props.viewsize/2,
+         height = this.props.viewsize/2;
 
      const   root = nodes[0];
     //  const   color = d3.scale.category10();
