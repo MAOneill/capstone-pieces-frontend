@@ -80,21 +80,6 @@ export default class Bubbles extends Component {
       </div>
     )
   }
-// static getDerivedStateFromProps (state,props) {
-//     console.log("the user photo is", props.userPhoto)
-//     if (props.userPhoto) {
-//         return {
-//             imageToUse:`./${props.userPhoto}`,
-//         }
-
-//     }
-//     else {
-//         return {
-//             imageToUse:`./photos/bug.jpg`,
-//         }
-
-//     }
-// }
   componentDidMount() {
   }
   
