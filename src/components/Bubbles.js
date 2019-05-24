@@ -96,19 +96,6 @@ export default class Bubbles extends Component {
 //     }
 // }
   componentDidMount() {
-    // if (this.props.userPhoto) {
-    //     this.setState ({
-    //         imageToUse:`./${this.props.userPhoto}`,
-    //     })
-
-    // }
-    // else {
-    //     this.setState ({
-    //         imageToUse:`./photos/bug.jpg`,
-    //     })
-
-//     }
-// console.log("the image to use", this.state.imageToUse)
   }
   
   _imgOnLoad =  () => {
@@ -116,27 +103,14 @@ export default class Bubbles extends Component {
 // let testARray = createRandomArray(100);
 
       const myImage = new Image(this.state.imageLoadSize,this.state.imageLoadSize);   
-
-      let myimagesource = "./photos/bug.jpg";
-      let name = "bug";
-
-    //   myImage.src = this.state.imageToUse
-    this.props.userPhoto ?  myImage.src = `./${this.props.userPhoto}` : myImage.src =`./photos/sharks.jpg`   ;
-    // this.props.userPhoto ?  myImage.src = `./${this.props.userPhoto}` : myImage.src =`./photos/${name}.jpg`   ;
-    // this.props.userPhoto ?  myImage.src = `./${this.props.userPhoto}` : myImage.src =myimagesource   ;
-    //   alert(myImage.src);
-      //   console.log("the image size of user selectd is", size);
-      // console.log("the user image", myImage);
-      
-      myImage.onload = this._secondaryLoad(myImage);
-    }
-    _secondaryLoad = (myImage) => {
-        
+    myImage.src="";
+    
+    myImage.onload = () => {
         const size = myImage.width
-            //set contants
+        //set contants
             const numberOfCircles = this.state.numberOfCircles;
             //create patterns and load them to state
-        console.log("CREATING PATTERNS")
+            console.log("CREATING PATTERNS")
             const oCtx =  loadImageToCanvas(myImage ,size, size)
             const patternWidth = parseInt(size/numberOfCircles) //same as this.width
             const dataObject = createDataArray(numberOfCircles,patternWidth,patternWidth)
@@ -147,17 +121,20 @@ export default class Bubbles extends Component {
             dataObject.forEach((d,i) => {
                 allPatternImages.push(createPatterns(oCtx,tempCanvas,d.x,d.y,d.pW,d.pH,i+1))
             })
-        //   createD3(numberOfCircles)
-
-        console.log("SETTING STATE ")
             this.setState({
                 patterns:allPatternImages,
                 dataObject:dataObject,
             }) 
+      }
+      
+      this.props.userPhoto ?  myImage.src = `./${this.props.userPhoto}` : myImage.src =`./photos/sharks.jpg`   ;
+   
+    }
 }
+
      
 
-}
+
 
 
 function loadImageToCanvas(loadedImage,canvasWidth, canvasHeight) {
