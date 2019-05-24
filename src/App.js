@@ -13,6 +13,7 @@ import MenuBar from './components/MenuBar';
 import Bubbles from './components/Bubbles';
 import PhotoActions from './components/PhotoActions';
 import Guess from './components/Guess';
+import Puzzle from './components/Puzzle';
 
 axios.defaults.withCredentials = true
 
@@ -44,6 +45,10 @@ export default class App extends Component {
               render={(props)=> (
                 <Bubbles userPhoto={this.state.selectedPhoto}/>
               )} />
+        <Route exact path="/puzzle"
+            render={(props)=> (
+              <Puzzle userPhoto={this.state.selectedPhoto}/>
+            )} />
         <Route exact path="/guess" 
               render={(props) => (
                 <div>

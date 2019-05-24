@@ -72,7 +72,14 @@
 #patterns {
   width:1px;  
 }
-
+.puzzlesvg {
+  width:850.4px;
+  height:850.4px;
+}
+.st0 {
+  stroke:red;
+  /* fill:blue; */
+}
 #pictureframe {
   object-fit:cover;
   /* THIS DETERMINES THE CIRCLE OVER ALL SIZE.... */

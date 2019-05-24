@@ -26,6 +26,7 @@ export default class Bubbles extends Component {
             answerList:[],
             guessSelection:null,
             isGameOver:false,
+            clearDefs:false,
 
         }
         this.width = parseInt(this.state.imageLoadSize / this.state.numberOfCircles);
@@ -36,36 +37,41 @@ export default class Bubbles extends Component {
       <div>
             
         <div >
-            <svg id="patterns"  
-            style={{opacity:((this.state.numberTurns % 2) ? 1 : .99)}}
-            key={(new Date().getTime())}
-            viewBox={`0 0 ${this.state.imageLoadSize * 2} ${this.state.imageLoadSize * 2}` }
-            xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
+        {this.state.clearDefs ? 
+                 null :
+                 (
+                <svg id="patterns"  
+                style={{opacity:((this.state.numberTurns % 2) ? 1 : .99)}}
+                key={(new Date().getTime())}
+                viewBox={`0 0 ${this.state.imageLoadSize * 2} ${this.state.imageLoadSize * 2}` }
+                xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
 
                     
-                <defs ref={this.mydefs}>
+                    <defs ref={this.mydefs}>
 
-                {/* THIS HAS TO BE A SEPARATE COMPONENT - SO IT ONLY RENDERS ONCE WHEN THE IMAGE LOADS */}
-                {/* OR - DON'T USE ONLOAD FOR IMAGE - PUT THIS ALL IN COMPONENT DID MOUNT... */}
+                    {/* THIS HAS TO BE A SEPARATE COMPONENT - SO IT ONLY RENDERS ONCE WHEN THE IMAGE LOADS */}
+                    {/* OR - DON'T USE ONLOAD FOR IMAGE - PUT THIS ALL IN COMPONENT DID MOUNT... */}
 
-                    {this.state.patterns.map((pattern,i) => (
-                        <pattern id={`pattern${i+1}`} 
-                        key={(new Date().getTime()+i + this.state.numberTurns)}
-                        style={{opacity:((this.state.numberTurns % 2) ? 1 : .99)}}
-                        patternUnits="objectBoundingBox" 
-                        width="100%" height="100%">
-                        <image 
-                        key={(new Date().getTime()+(i*1000))}
-                        style={{opacity:((this.state.numberTurns % 2) ? 1 : .99)}}
-                        width={`${this.width}px`} height={`${this.width}px`} 
-                        xlinkHref={pattern.href.baseVal}
-                            >
+                        {this.state.patterns.map((pattern,i) => (
+                            <pattern id={`pattern${i+1}`} 
+                            key={(new Date().getTime()+i + this.state.numberTurns)}
+                            style={{opacity:((this.state.numberTurns % 2) ? 1 : .99)}}
+                            patternUnits="objectBoundingBox" 
+                            width="100%" height="100%">
+                            <image 
+                            key={(new Date().getTime()+(i*1000))}
+                            style={{opacity:((this.state.numberTurns % 2) ? 1 : .99)}}
+                            width={`${this.width}px`} height={`${this.width}px`} 
+                            xlinkHref={pattern.href.baseVal}
+                                >
 
-                            </image>
-                        </pattern>
-                    ))}
-                </defs>
-            </svg>
+                                </image>
+                            </pattern>
+                        ))}
+                    </defs>
+                </svg>
+                     
+                 )}   
         </div>
 
         <div className="guessGrid">
@@ -153,6 +159,7 @@ _newGame = () => {
                             answerList:answerList,
                             guessSelection:null,
                             isGameOver:false,
+                            clearDefs:false,
                         })
             
 
@@ -217,11 +224,17 @@ _submitAnswer = (e) => {
     else if (parseInt(this.state.guessSelection) !== parseInt(this.state.photoKey)) {
         console.log(`${this.state.guessSelection} not equal to ${this.state.photoKey}`)
         //you lose
+        
         this.setState({
             guessSelection:null,
             message:"sorry, that is INcorrect",
             isGameOver:true,
+            clearDefs:true,
 
+        },() => {
+            this.setState({
+                // clearDefs:false,
+            })
         })
         console.log(`The number correct is ${this.state.numberCorrect}`);
         this._addScore(this.state.numberCorrect)
@@ -241,6 +254,7 @@ _submitAnswer = (e) => {
                 message:"You Won.  Play Again.",
                 guessSelection:null,
                 isGameOver:true,
+
             })
 
         }
@@ -259,6 +273,12 @@ _submitAnswer = (e) => {
                 message:"correct, guess again." ,
                 answerList:answerList,
                 numberOfCircles:this.state.numberOfCircles + 1,
+                clearDefs:true,
+            }, ()=> {
+                console.log("we are running correct guess")
+                this.setState({
+                    // clearDefs:false,
+                })
             })
         }
 
@@ -281,49 +301,82 @@ console.log(`The value we are tyring to add is ${value}`);
     console.log("Image Loaded");
 
       const myImage = new Image(this.state.imageLoadSize,this.state.imageLoadSize);   
+      myImage.onload = () => {
+
+                console.log("a 2nd image onload function")
+                console.log("this.props.selectedImage is ", this.state.selectedImage)
+                const size = myImage.width
+                console.log("my image", myImage.src);
+                
+                //set contants
+                const numberOfCircles = this.state.numberOfCircles;
+                //create patterns and load them to state
+                console.log("natural height should not be zero", myImage.naturalHeight)
+                const oCtx =  loadImageToCanvas(myImage ,size, size)
+                const patternWidth = parseInt(size/numberOfCircles) //same as this.width
+                const dataObject = createDataArray(numberOfCircles,patternWidth,patternWidth)
+                
+                const tempCanvas = createTempCanvas(patternWidth,patternWidth);
+                
+                const allPatternImages = []
+                dataObject.forEach((d,i) => {
+                    allPatternImages.push(createPatterns(oCtx,tempCanvas,d.x,d.y,d.pW,d.pH,i+1))
+                })
+                
+                console.log(allPatternImages.map((i)=> i.src))
+                setTimeout(() => {
+                    this.setState({
+                        patterns:allPatternImages,
+                        dataObject:dataObject,
+                        clearDefs:false,
+                    }) 
+
+                },500)
+      }
+      myImage.src = "";
+      console.log("before setting image value")
       myImage.src = `${this.state.selectedImage}` ;
     //   this.state.selectedImage ? myImage.src=`./guessing/iguana.jpg` : myImage.src=`./guessing/sharks.jpg`
-myImage.onload = this._secondaryImageLoad(myImage);
 
 }
 
 
-_secondaryImageLoad = (myImage) => {
+// _secondaryImageLoad = (myImage) => {
+//         console.log("a 2nd image onload function")
+//         console.log("this.props.selectedImage is ", this.state.selectedImage)
+//         const size = myImage.width
+//         console.log("my image", myImage.src);
+        
+//         //set contants
+//         const numberOfCircles = this.state.numberOfCircles;
+//         //create patterns and load them to state
+//         console.log("natural height should not be zero", myImage.naturalHeight)
+//         const oCtx =  loadImageToCanvas(myImage ,size, size)
+//         const patternWidth = parseInt(size/numberOfCircles) //same as this.width
+//         const dataObject = createDataArray(numberOfCircles,patternWidth,patternWidth)
+        
+//         const tempCanvas = createTempCanvas(patternWidth,patternWidth);
+        
+//         const allPatternImages = []
+//         dataObject.forEach((d,i) => {
+//             allPatternImages.push(createPatterns(oCtx,tempCanvas,d.x,d.y,d.pW,d.pH,i+1))
+//         })
+        
+//         console.log(allPatternImages.map((i)=> i.src))
+//         this.setState({
+//             patterns:allPatternImages,
+//             dataObject:dataObject,
+//             clearDefs:false,
+//         }) 
     
-
-        console.log("a 2nd image onload function")
-        console.log("this.props.selectedImage is ", this.state.selectedImage)
-        const size = myImage.width
-        console.log(myImage);
-        
-        //set contants
-        const numberOfCircles = this.state.numberOfCircles;
-        //create patterns and load them to state
-        
-        const oCtx =  loadImageToCanvas(myImage ,size, size)
-        const patternWidth = parseInt(size/numberOfCircles) //same as this.width
-        const dataObject = createDataArray(numberOfCircles,patternWidth,patternWidth)
-        
-        const tempCanvas = createTempCanvas(patternWidth,patternWidth);
-        
-        const allPatternImages = []
-        dataObject.forEach((d,i) => {
-            allPatternImages.push(createPatterns(oCtx,tempCanvas,d.x,d.y,d.pW,d.pH,i+1))
-        })
-        
-        this.setState({
-            patterns:allPatternImages,
-            dataObject:dataObject,
-        }) 
-    
-    
-}
+// }
 }
 
 function loadImageToCanvas(loadedImage,canvasWidth, canvasHeight) {
     const oCanvas = document.createElement('canvas');
     const oCtx = oCanvas.getContext('2d');
     
+    console.log("natural height", loadedImage.naturalHeight);
     //for now I am smooshing it into a square.  I will change this to be proportional later
     oCanvas.height = canvasHeight;   //versus naturalHeight
     oCanvas.width= canvasWidth;

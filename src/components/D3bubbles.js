@@ -92,7 +92,9 @@ export default class D3bubbles extends Component {
       .append("circle")
         .attr("r", function(d) { return d.radius; })
         // .style("fill", function(d, i) { return color(i % 3); })
-        .style("fill", function(d,i) {return `url(`+ window.location.origin + window.location.pathname + `#pattern${i+1})`});
+        .style("fill", function(d,i) {
+          // alert(window.location.origin + window.location.pathname + `#pattern${i+1}`)
+          return `url(`+ window.location.origin + window.location.pathname + `#pattern${i+1})`});
     
     
         
