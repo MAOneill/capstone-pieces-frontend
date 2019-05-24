@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import './App.css';
 import FileUpload from './components/FileUpload'
-import SendScore from './components/SendScore';
+// import SendScore from './components/SendScore';
 
 // import {Link, Route, Switch} from 'react-router-dom'
 import { Route, Switch} from 'react-router-dom'

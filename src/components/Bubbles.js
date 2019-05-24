@@ -10,6 +10,7 @@ export default class Bubbles extends Component {
             dataObject:[],
             numberOfCircles:3,
             imageLoadSize:400,
+            imageToUse:"photos/bug.jpg",
         }
         this.width = parseInt(this.state.imageLoadSize / this.state.numberOfCircles)
     }
@@ -20,6 +21,7 @@ export default class Bubbles extends Component {
             
         <div >
             <svg id="patterns" 
+            key={(new Date().getTime())}
             viewBox={`0 0 ${this.state.imageLoadSize * 2} ${this.state.imageLoadSize * 2}` }
             // viewBox="0 0 800 800" 
             xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
@@ -31,8 +33,13 @@ export default class Bubbles extends Component {
                 {/* OR - DON'T USE ONLOAD FOR IMAGE - PUT THIS ALL IN COMPONENT DID MOUNT... */}
 
                     {this.state.patterns.map((pattern,i) => (
-                        <pattern id={`pattern${i+1}`} key={i} patternUnits="objectBoundingBox" width="100%" height="100%">
-                            <image width={`${this.width}px`} height={`${this.width}px`} xlinkHref={pattern.href.baseVal}
+                        <pattern id={`pattern${i+1}`} 
+                        key={(new Date().getTime() + i)} 
+                        patternUnits="objectBoundingBox" width="100%" height="100%">
+                            <image 
+                            key={(new Date().getTime()+(i*1000))}
+                            width={`${this.width}px`} height={`${this.width}px`} 
+                            xlinkHref={pattern.href.baseVal}
                             >
 
                             </image>
@@ -63,7 +70,7 @@ export default class Bubbles extends Component {
 
 
         <div id="pictureframe" data-div>
-            
+        {/* <img  id="myimg" onLoad={this._imgOnLoad} src={`./${this.state.imageToUse}`} alt="user supplied"></img> */}
             {this.props.userPhoto ? 
             <img  id="myimg" onLoad={this._imgOnLoad} src={`./${this.props.userPhoto}`} alt="user supplied"></img>
             : <img id="myimg" onLoad={this._imgOnLoad} src="./photos/bug.jpg" alt="default "></img>
@@ -73,40 +80,78 @@ export default class Bubbles extends Component {
       </div>
     )
   }
+// static getDerivedStateFromProps (state,props) {
+//     console.log("the user photo is", props.userPhoto)
+//     if (props.userPhoto) {
+//         return {
+//             imageToUse:`./${props.userPhoto}`,
+//         }
 
-  _imgOnLoad = () => {
+//     }
+//     else {
+//         return {
+//             imageToUse:`./photos/bug.jpg`,
+//         }
+
+//     }
+// }
+  componentDidMount() {
+    // if (this.props.userPhoto) {
+    //     this.setState ({
+    //         imageToUse:`./${this.props.userPhoto}`,
+    //     })
+
+    // }
+    // else {
+    //     this.setState ({
+    //         imageToUse:`./photos/bug.jpg`,
+    //     })
+
+//     }
+// console.log("the image to use", this.state.imageToUse)
+  }
+  
+  _imgOnLoad =  () => {
       console.log("Image Loaded");
 // let testARray = createRandomArray(100);
 
       const myImage = new Image(this.state.imageLoadSize,this.state.imageLoadSize);   
 
-    this.props.userPhoto ?  myImage.src = `./${this.props.userPhoto}`:myImage.src = "./photos/bug.jpg"   ;
-    //   console.log(myImage);
+      let myimagesource = "./photos/bug.jpg";
+      let name = "bug";
+
+    //   myImage.src = this.state.imageToUse
+    this.props.userPhoto ?  myImage.src = `./${this.props.userPhoto}` : myImage.src =`./photos/bug.jpg`   ;
+    // this.props.userPhoto ?  myImage.src = `./${this.props.userPhoto}` : myImage.src =`./photos/${name}.jpg`   ;
+    // this.props.userPhoto ?  myImage.src = `./${this.props.userPhoto}` : myImage.src =myimagesource   ;
+      console.log(myImage);
       const size = myImage.width
-    //   console.log(size);
-
+    //   console.log("the image size of user selectd is", size);
+// console.log("the user image", myImage);
       
-      //set contants
-      const numberOfCircles = this.state.numberOfCircles;
-      //create patterns and load them to state
 
-      const oCtx =  loadImageToCanvas(myImage ,size, size)
-      const patternWidth = parseInt(size/numberOfCircles) //same as this.width
-      const dataObject = createDataArray(numberOfCircles,patternWidth,patternWidth)
+          //set contants
+          const numberOfCircles = this.state.numberOfCircles;
+          //create patterns and load them to state
+    console.log("CREATING PATTERNS")
+          const oCtx =  loadImageToCanvas(myImage ,size, size)
+          const patternWidth = parseInt(size/numberOfCircles) //same as this.width
+          const dataObject = createDataArray(numberOfCircles,patternWidth,patternWidth)
+        
+          const tempCanvas = createTempCanvas(patternWidth,patternWidth);
+          
+          const allPatternImages = []
+          dataObject.forEach((d,i) => {
+              allPatternImages.push(createPatterns(oCtx,tempCanvas,d.x,d.y,d.pW,d.pH,i+1))
+          })
+        //   createD3(numberOfCircles)
     
-      const tempCanvas = createTempCanvas(patternWidth,patternWidth);
-      
-      const allPatternImages = []
-      dataObject.forEach((d,i) => {
-          allPatternImages.push(createPatterns(oCtx,tempCanvas,d.x,d.y,d.pW,d.pH,i+1))
-      })
-    //   createD3(numberOfCircles)
-
-
-      this.setState({
-          patterns:allPatternImages,
-          dataObject:dataObject,
-      }) 
+    console.log("SETTING STATE ")
+          this.setState({
+              patterns:allPatternImages,
+              dataObject:dataObject,
+          }) 
+     
 }
 }
 
