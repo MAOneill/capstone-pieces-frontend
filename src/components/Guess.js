@@ -248,15 +248,16 @@ _submitAnswer = (e) => {
         //20th round:
         ///NEED TO INCREASE THIS WHEN I HAVE 20 PICTURES
         if (this.state.numberTurns === 10) {
-            this._addScore(this.setState.numberCorrect + 1)
-        
+            
             //you win 
             this.setState({
                 message:"You Won.  Play Again.",
                 guessSelection:null,
                 isGameOver:true,
-
+                
             })
+            this._addScore(this.setState.numberCorrect + 1)
+
 
         }
         else {
