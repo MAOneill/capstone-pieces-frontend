@@ -25,7 +25,8 @@ export default class FileUpload extends Component {
         <input name="foo" 
         onChange={this._changeFileName} 
         type="file"         
-        accept="image/png, image/jpeg, image/jpg"></input>
+        accept="image/png, image/jpeg, image/jpg"
+        capture></input>
         <button type="submit" >Submit</button>
 
         <h4>{this.props.message}</h4>
