@@ -26,7 +26,7 @@ export default class Bubbles extends Component {
             answerList:[],
             guessSelection:null,
             isGameOver:false,
-            clearDefs:false,
+            // clearDefs:false,
 
         }
         this.width = parseInt(this.state.imageLoadSize / this.state.numberOfCircles);
@@ -37,9 +37,9 @@ export default class Bubbles extends Component {
       <div>
             
         <div >
-        {this.state.clearDefs ? 
+        {/* {this.state.clearDefs ? 
                  null :
-                 (
+                 ( */}
                 <svg id="patterns"  
                 style={{opacity:((this.state.numberTurns % 2) ? 1 : .99)}}
                 key={(new Date().getTime())}
@@ -70,8 +70,8 @@ export default class Bubbles extends Component {
                         ))}
                     </defs>
                 </svg>
-                     
-                 )}   
+{/*                      
+                 )}    */}
         </div>
 
         <div className="guessGrid">
@@ -159,7 +159,7 @@ _newGame = () => {
                             answerList:answerList,
                             guessSelection:null,
                             isGameOver:false,
-                            clearDefs:false,
+                            // clearDefs:false,
                         })
             
 
@@ -229,7 +229,8 @@ _submitAnswer = (e) => {
             guessSelection:null,
             message:"sorry, that is INcorrect",
             isGameOver:true,
-            clearDefs:true,
+            // clearDefs:true,
+            // clearDefs:false,
 
         },() => {
             this.setState({
@@ -273,7 +274,8 @@ _submitAnswer = (e) => {
                 message:"correct, guess again." ,
                 answerList:answerList,
                 numberOfCircles:this.state.numberOfCircles + 1,
-                clearDefs:true,
+                // clearDefs:true,
+                // clearDefs:false,
             }, ()=> {
                 console.log("we are running correct guess")
                 this.setState({
@@ -328,7 +330,7 @@ console.log(`The value we are tyring to add is ${value}`);
                     this.setState({
                         patterns:allPatternImages,
                         dataObject:dataObject,
-                        clearDefs:false,
+                        // clearDefs:false,
                     }) 
 
                 },500)
