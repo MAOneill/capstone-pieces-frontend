@@ -12,6 +12,7 @@ export default class D3bubbles extends Component {
     return (
       <div>
 
+{this.props.isGameOver ? null : (
 
 <svg id="drawing" ref={node => this.node = node}
           // viewBox="0 0 1000 1000"
@@ -21,6 +22,9 @@ export default class D3bubbles extends Component {
 
 
             </svg>
+)
+
+}
       </div>
     )
   }

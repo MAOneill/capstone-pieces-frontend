@@ -20,12 +20,13 @@ export default class FileUpload extends Component {
          <form id="myform" 
         //  this creates a reference in react to my form element, so I can reset it.
          ref={form => this.form = form}
-         encType="multipart/form-data">
+         encType="multipart/form-data"
+         onSubmit={this._getFormData}>
         <input name="foo" 
         onChange={this._changeFileName} 
         type="file"         
         accept="image/png, image/jpeg, image/jpg"></input>
-        <button type="submit" onClick={this._getFormData}>Submit</button>
+        <button type="submit" >Submit</button>
 
         <h4>{this.props.message}</h4>
         </form>
@@ -83,6 +84,7 @@ _uploadFile = (file) => {
 const url = `/main/addurl`;
 const formData = new FormData();
 formData.append('file',file)
+// console.log(formData);  //there is nothing in here??
 const config = {
     headers: {
         'content-type': 'multipart/form-data'

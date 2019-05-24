@@ -48,10 +48,10 @@ export default class App extends Component {
               render={(props) => (
                 <div>
                 <DisplayUserHighScore scores={this.state.scoreArray} />
-                <SendScore message={this.state.message} 
+                {/* <SendScore message={this.state.message} 
                           id={this.state.userId}
                           handleUpdate={this._scoreUpdated}
-                          handleMessage={this._updateMessage}/>
+                          handleMessage={this._updateMessage}/> */}
                 <Guess 
                 handleUpdate={this._scoreUpdated}
                 handleMessage={this._updateMessage}/>
