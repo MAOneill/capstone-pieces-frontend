@@ -11,7 +11,7 @@ export default class Puzzle extends Component {
 				dataObject:puzzleDict,
 				selectedImage:null,
 				imageLoadSize:400,
-				styleObj:{}
+				// styleObj:{}
             }
         }
 	
@@ -24,7 +24,7 @@ export default class Puzzle extends Component {
 
 				<svg className="puzzlesvg"  
 								key={(new Date().getTime())}
-								viewBox={`0 0 1000 1000` }
+								viewBox={`0 0 700 700` }
 								xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
 
 
@@ -50,7 +50,7 @@ export default class Puzzle extends Component {
 					<svg className={`puzzlesvg puz${piece.pat}`}
 					key={i}
 						// viewBox={`0 0 1000 1000 ` }
-						viewBox={`0 0 1000 1000 ` }
+						viewBox={`0 0 700 700 ` }
 						xmlns="http://www.w3.org/2000/svg" 
 						xmlnsXlink="http://www.w3.org/1999/xlink">
 						<path className={`st0 x${piece.pat}`}  		
@@ -77,20 +77,20 @@ export default class Puzzle extends Component {
 
 componentDidMount() {
 
-		let styleObj = {};
-			this.state.dataObject.forEach((piece)=> {
-				styleObj[`${piece.pat}`]= { style:"rotate(10deg) translate(-100px, 100px)",
-											rotateDeg: 0,
-											xMove:0,
-											yMove:0,
-											}
+		// let styleObj = {};
+		// 	this.state.dataObject.forEach((piece)=> {
+		// 		styleObj[`${piece.pat}`]= { style:"rotate(10deg) translate(-100px, 100px)",
+		// 									rotateDeg: 0,
+		// 									xMove:0,
+		// 									yMove:0,
+		// 									}
 											 
-				})
-				console.log(styleObj);
+		// 		})
+		// 		console.log(styleObj);
 
-	this.setState({
-		styleObj:styleObj,
-	})
+	// this.setState({
+	// 	styleObj:styleObj,
+	// })
 
 	//you have to give it an empty src.  THEN assign the onload behavior,
 	//THEN you can load the real image.  this a bug in safari and this is the only way around it.
