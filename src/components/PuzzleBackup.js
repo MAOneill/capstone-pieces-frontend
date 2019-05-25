@@ -1,7 +1,6 @@
 
 import React, { Component } from 'react'
 import puzzleDict from '../puzzleDict';
-import PuzzlePiece from './PuzzlePiece';
 
 export default class Puzzle extends Component {
 
@@ -15,7 +14,6 @@ export default class Puzzle extends Component {
 				// styleObj:{},
 				viewBoxWidth:700,
 				viewBoxHeight:700,
-				selectedPiece:null,
             }
         }
 	
@@ -52,26 +50,25 @@ export default class Puzzle extends Component {
 				</defs>
 {/* all the paths go here...should be the same viewBox size as parent svg... */}
 				{this.state.dataObject.map((piece,i) => (
-					<PuzzlePiece 
-						key={piece.pat}
-						viewBoxWidth={this.state.viewBoxWidth}
-						viewBoxHeight={this.state.viewBoxHeight}
-						patternNum={piece.pat}
-						transformOrigin={`${piece.x + (piece.w/2)}px ${piece.y +(piece.h/2)}px`}
-						stroke={piece.stroke}
-						path={piece.d}
-						rotateDeg={10}
-						xMove={0}
-						yMove={0}
-						
-						fill={`url(#pattern${piece.pat})`}
-						selected={(this.selectedPiece === piece.pat) ? true : false}
-						handleSelectedPiece={() => {
-							this._selectedPiece(piece.pat)
-						}}
-						/>
+					<svg className={`puzzlesvg puz${piece.pat}`}
+					key={i}
+						viewBox={`0 0 ${this.state.viewBoxWidth} ${this.state.viewBoxHeight}` }
 
-					
+						xmlns="http://www.w3.org/2000/svg" 
+						xmlnsXlink="http://www.w3.org/1999/xlink">
+						<path className={`st0 x${piece.pat}`}  		
+							style={{
+								transform: piece.style,
+								transformOrigin:`${piece.x + (piece.w/2)}px ${piece.y +(piece.h/2)}px`,
+								stroke:piece.stroke,
+							// transform: "rotate(10deg) translate(-100px, 100px)",
+							// transform: "translate(10,400)",
+							// transform: "rotate(5deg) translateX(-10) translateY(-10)",
+						}}
+
+							d={piece.d}
+							fill={`url(#pattern${piece.pat})`} />
+					</svg>
 					
 				))}
 
@@ -80,13 +77,27 @@ export default class Puzzle extends Component {
         )
 	}
 	
-_selectedPiece = (pat) => {
-	this.setState({
-		selectedPiece:pat
-	})
-}
+
 componentDidMount() {
 
+		// let styleObj = {};
+		// 	this.state.dataObject.forEach((piece)=> {
+		// 		styleObj[`${piece.pat}`]= { style:"rotate(10deg) translate(-100px, 100px)",
+		// 									rotateDeg: 0,
+		// 									xMove:0,
+		// 									yMove:0,
+		// 									}
+											 
+		// 		})
+		// 		console.log(styleObj);
+
+	// this.setState({
+	// 	styleObj:styleObj,
+	// })
+
+	//you have to give it an empty src.  THEN assign the onload behavior,
+	//THEN you can load the real image.  this a bug in safari and this is the only way around it.
+	//otherwise subsequent images will not load into the patterns!
 	const myImage = new Image(this.state.imageLoadSize,this.state.imageLoadSize);   
     myImage.src="";
     
