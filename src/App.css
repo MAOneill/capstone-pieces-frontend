@@ -72,9 +72,32 @@
 #patterns {
   width:1px;  
 }
+.largersvg {
+  width:80vh;
+}
 .puzzlesvg {
-  width:850.4px;
-  height:850.4px;
+  width:90vh;
+  /* height:1000px; */
+  overflow:visible;
+  transform: translate(50% 50%)
+}
+.thepuzzleContainer {
+
+}
+.x64 {
+  /* transform-origin: 20px 20px; */
+  /* transform: translate(295px, 115px); */
+  transform: rotate(-2deg);
+}    
+.x61 {
+  transform-origin: 122px 275px;
+  transform: rotate(5deg);
+}
+.x54 {
+  transform-origin: 33px 26px;
+  /* transform: rotate(360deg); */
+  transform:translateX(-10px)
+
 }
 .st0 {
   stroke:red;
