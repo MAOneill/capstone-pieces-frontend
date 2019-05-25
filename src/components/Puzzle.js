@@ -11,7 +11,9 @@ export default class Puzzle extends Component {
 				dataObject:puzzleDict,
 				selectedImage:null,
 				imageLoadSize:400,
-				// styleObj:{}
+				// styleObj:{},
+				viewBoxWidth:700,
+				viewBoxHeight:700,
             }
         }
 	
@@ -24,7 +26,8 @@ export default class Puzzle extends Component {
 
 				<svg className="puzzlesvg"  
 								key={(new Date().getTime())}
-								viewBox={`0 0 700 700` }
+								// viewBox={`0 0 700 700` }
+								viewBox={`0 0 ${this.state.viewBoxWidth} ${this.state.viewBoxHeight}` }
 								xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
 
 
@@ -49,8 +52,8 @@ export default class Puzzle extends Component {
 				{this.state.dataObject.map((piece,i) => (
 					<svg className={`puzzlesvg puz${piece.pat}`}
 					key={i}
-						// viewBox={`0 0 1000 1000 ` }
-						viewBox={`0 0 700 700 ` }
+						viewBox={`0 0 ${this.state.viewBoxWidth} ${this.state.viewBoxHeight}` }
+
 						xmlns="http://www.w3.org/2000/svg" 
 						xmlnsXlink="http://www.w3.org/1999/xlink">
 						<path className={`st0 x${piece.pat}`}  		
