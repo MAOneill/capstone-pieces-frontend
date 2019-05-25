@@ -73,10 +73,10 @@
   width:1px;  
 }
 .largersvg {
-  width:80vh;
+  width:100vh;
 }
 .puzzlesvg {
-  width:90vh;
+  width:100vh;
   /* height:1000px; */
   overflow:visible;
   transform: translate(50% 50%)
@@ -84,25 +84,7 @@
 .thepuzzleContainer {
 
 }
-.x64 {
-  /* transform-origin: 20px 20px; */
-  /* transform: translate(295px, 115px); */
-  transform: rotate(-2deg);
-}    
-.x61 {
-  transform-origin: 122px 275px;
-  transform: rotate(5deg);
-}
-.x54 {
-  transform-origin: 33px 26px;
-  /* transform: rotate(360deg); */
-  transform:translateX(-10px)
 
-}
-.st0 {
-  stroke:red;
-  /* fill:blue; */
-}
 #pictureframe {
   object-fit:cover;
   /* THIS DETERMINES THE CIRCLE OVER ALL SIZE.... */
