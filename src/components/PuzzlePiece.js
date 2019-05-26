@@ -51,8 +51,10 @@ export default class PuzzlePiece extends Component {
                             
                             //this resets all the pices...don't do this
                             // onClick={this.props.handleSelectedPiece}
-
+                           
+                            
                             onMouseDown={(e) => {
+                            
                                 // this.props.handleSelectedPiece()
                                 e.preventDefault();
                                 document.addEventListener('mousemove', this._handleMouseMove);
@@ -62,9 +64,18 @@ export default class PuzzlePiece extends Component {
                                 })
             
                                     }}
+
+                                onClick={(e) => {
+                                    e.preventDefault();
+                                    console.log("click only");
+                                }}
                            
                             
                             />
+                            {/* use this to rotate.  only show it if selected. */}
+                            <circle r="5px" cx={this.props.origX} cy={this.props.origY} 
+                            style={this.state.style}
+                            fill="yellow" />
 					</svg>
         )
     }
