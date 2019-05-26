@@ -16,10 +16,10 @@ export default class Bubbles extends Component {
     }
   render() {
     return (
-      <div>
+      <div className="mainbubblecontainer">
         
             
-        <div >
+        <div  >
             <svg id="patterns" 
             key={(new Date().getTime())}
             viewBox={`0 0 ${this.state.imageLoadSize * 2} ${this.state.imageLoadSize * 2}` }
@@ -60,30 +60,30 @@ export default class Bubbles extends Component {
             </svg>
         </div>
 
+        <div className="bubblegrid">
+            <div className="svgcontainer">          
+            
+                <D3bubbles dataObject={this.state.dataObject}
+                viewsize={(this.state.imageLoadSize * 2)}/>
         
-        <div className="svgcontainer">          
-        
-            <D3bubbles dataObject={this.state.dataObject}
-             viewsize={(this.state.imageLoadSize * 2)}/>
-    
+            </div> 
+
+
+            <div id="pictureframe" data-div>
+            {/* <img  id="myimg" onLoad={this._imgOnLoad} src={`./${this.state.imageToUse}`} alt="user supplied"></img> */}
+                {this.props.userPhoto ? 
+                <img  id="myimg" onLoad={this._imgOnLoad} src={`./${this.props.userPhoto}`} alt="user supplied"></img>
+                : <img id="myimg" onLoad={this._imgOnLoad} src="./photos/sharks.jpg" alt="default "></img>
+                }
+            </div>
         </div>
-
-
-        <div id="pictureframe" data-div>
-        {/* <img  id="myimg" onLoad={this._imgOnLoad} src={`./${this.state.imageToUse}`} alt="user supplied"></img> */}
-            {this.props.userPhoto ? 
-            <img  id="myimg" onLoad={this._imgOnLoad} src={`./${this.props.userPhoto}`} alt="user supplied"></img>
-            : <img id="myimg" onLoad={this._imgOnLoad} src="./photos/sharks.jpg" alt="default "></img>
-            }
-        </div>
-
       </div>
     )
   }
   componentDidMount() {
-  }
+//   }
   
-  _imgOnLoad =  () => {
+//   _imgOnLoad =  () => {
       console.log("Image Loaded");
 // let testARray = createRandomArray(100);
 

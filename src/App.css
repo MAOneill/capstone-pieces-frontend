@@ -87,33 +87,48 @@ border:2px solid white;
 margin:5px;
 }
 
-#pictureframe {
-  object-fit:cover;
-  /* THIS DETERMINES THE CIRCLE OVER ALL SIZE.... */
-  width: 400px;
-  height: 400px;
-  /* YOU CAN HIDE THE VISIBILITY AND THE FUNCTIONALITY WILL STILL WORK */
-}
 .hidethis {
   visibility: hidden;
   /* display: none; */
 
 }
+.mainbubblecontainer {
+  width:80vw;
+}
+.bubblegrid {
+  width:100%;
+  display:grid;
+  grid-template-columns: 80% 20%;
+}
+.svgcontainer {
+  border:2px yellow solid;
+  width:100%;
+}
 
 .guessGrid {
+  width:95vw;
   display: grid;
   grid-template-columns: 60% 40%;
 }
+#pictureframe {
+  
+  object-fit:cover;
+  /* THIS DETERMINES THE CIRCLE OVER ALL SIZE.... */
+  width: 150px;
+  height: 150px;
+  /* YOU CAN HIDE THE VISIBILITY AND THE FUNCTIONALITY WILL STILL WORK */
+}
+
 #pictureframe img {
   object-fit:cover;
   /* fill is best - it will mimic what the slicing will do */
   object-fit: fill; 
   /* width:100%; */
-  width: 400px;
-  height: 400px; 
+  width: 100px;
+  height: 100px; 
 }
 .guessingsize {
-  width:80vh;
+  /* width:80vw; */
 }
 .answerlist {
   list-style: none;

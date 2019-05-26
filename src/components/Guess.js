@@ -6,7 +6,7 @@ import {post} from 'axios';
 // import {Link} from 'react-router-dom'
 
 
-export default class Bubbles extends Component {
+export default class Guess extends Component {
     constructor(props) {
         super(props);
         this.state={
@@ -85,7 +85,7 @@ export default class Bubbles extends Component {
             </div>
 
 
-            <div>
+            <div className="guessingOptions">
             {/* selections... */}
             {this.state.isGameOver ? (
                 // <Link  className="aButton" to="/guess">Play Again?</Link>
