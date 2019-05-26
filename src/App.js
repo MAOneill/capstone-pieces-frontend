@@ -36,7 +36,7 @@ export default class App extends Component {
   render() {
     return (
       <div className="App">
-      <header className="App-header">
+      {/* <header className="App-header"> */}
       <h3>{this.state.instruction}</h3>
       <MenuBar />
       <Switch>
@@ -52,12 +52,10 @@ export default class App extends Component {
         <Route exact path="/guess" 
               render={(props) => (
                 <div>
-                <DisplayUserHighScore scores={this.state.scoreArray} />
-                {/* <SendScore message={this.state.message} 
-                          id={this.state.userId}
-                          handleUpdate={this._scoreUpdated}
-                          handleMessage={this._updateMessage}/> */}
+                {/* <DisplayUserHighScore scores={this.state.scoreArray} /> */}
+                
                 <Guess 
+                scores={this.state.scoreArray}
                 handleUpdate={this._scoreUpdated}
                 handleMessage={this._updateMessage}/>
               </div>
@@ -85,7 +83,7 @@ export default class App extends Component {
 
 
       </Switch>
-      </header>
+      {/* </header> */}
     </div>
     )
   }

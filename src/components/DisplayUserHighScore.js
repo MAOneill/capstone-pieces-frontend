@@ -3,7 +3,7 @@ import React from 'react'
 export default function DisplayUserHighScore(props) {
     let ascore;
     console.log("props are",props.scores[0])
-    if (props.scores.length) {
+    if (props.scores) {
 
         //  ascore = props.scores[0].score
          ascore = Math.max(...props.scores.map((each) => {

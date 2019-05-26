@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import D3bubbles from './D3bubbles';
+import DisplayUserHighScore from './DisplayUserHighScore';
 import {createRandomArray} from '../utils';
 import photos from '../guessing';
 import {post} from 'axios';
@@ -30,6 +31,7 @@ export default class Guess extends Component {
         }
         this.width = parseInt(this.state.imageLoadSize / this.state.numberOfCircles);
         this.mydefs = React.createRef();
+        console.log("scores", this.props.scores)
     }
   render() {
     return (
@@ -80,6 +82,7 @@ export default class Guess extends Component {
 
 
             <div className="guessingOptions">
+                 <DisplayUserHighScore scores={this.props.scores} />
             {/* selections... */}
             {this.state.isGameOver ? (
                 // <Link  className="aButton" to="/guess">Play Again?</Link>

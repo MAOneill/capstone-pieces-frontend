@@ -8,7 +8,7 @@
   pointer-events: none;
 }
 
-.App-header {
+.App-header , body , .App {
   background-color: #282c34;
   min-height: 100vh;
   display: flex;
@@ -64,10 +64,16 @@
   object-fit: fill;
 
 }
+.nav {
+  position: absolute;
+  top:0;
+}
 .navelement {
-  padding:5px;
+  /* padding:5px; */
+  padding: 0 5px 0 5px;
+  
   color:white;
-  margin: 5px;
+  /* margin: 5px; */
 }
 #patterns {
   width:1px;  
