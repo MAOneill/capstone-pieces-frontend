@@ -65,9 +65,9 @@ export default class Bubbles extends Component {
                 : <img id="myimg" onLoad={this._imgOnLoad} src="./photos/sharks.jpg" alt="default "></img>
                 }
             {/* allow user to change the number of bubbles */}
-            <label for="#numbercircles">Change the number of Circles:</label>
+            <label >Change the number of Circles:
             <input id="numbercircles" type="number" 
-                min="2" max="20"
+                min="3" max="20"
                     onChange={(e) => {
 
 
@@ -104,6 +104,7 @@ export default class Bubbles extends Component {
                
 
             }} />
+            </label>
             </div>
         </div>
       </div>
@@ -121,7 +122,23 @@ export default class Bubbles extends Component {
     myImage.src="";
     
     myImage.onload = () => {
+        //we want to force to square.
+        // console.log(`myimage.naturalWidth: ${myImage.naturalWidth}. myImage.naturalHeight: ${myImage.naturalHeight}`);
+        // //create a temp canvas for the - do i need this..
+        // const squaredSize = Math.min(myImage.naturalHeight, myImage.naturalWidth)
+        // console.log(squaredSize)
         const size = myImage.width
+        
+
+        // const bigCtx =  loadImageToCanvas(myImage ,myImage.naturalWidth, myImage.naturalHeight)
+        // const patternImgData = bigCtx.getImageData(0,0,squaredSize,squaredSize );
+        // const bigTempCanvas = createTempCanvas(size,size)
+        // const bigTempContext = bigTempCanvas.getContext('2d');
+        // bigTempContext.putImageData(patternImgData, 0, 0);
+
+        // console.log(bigTempContext);
+
+
         //set contants
             const numberOfCircles = this.state.numberOfCircles;
             //create patterns and load them to state
@@ -135,6 +152,7 @@ export default class Bubbles extends Component {
             const allPatternImages = []
             dataObject.forEach((d,i) => {
                 allPatternImages.push(createPatterns(oCtx,tempCanvas,d.x,d.y,d.pW,d.pH,i+1))
+                // allPatternImages.push(createPatterns(bigTempContext,tempCanvas,d.x,d.y,d.pW,d.pH,i+1))
             })
             this.setState({
                 patterns:allPatternImages,
