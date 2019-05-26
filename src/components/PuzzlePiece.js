@@ -16,6 +16,7 @@ export default class PuzzlePiece extends Component {
             origX:this.props.origX,
             origY:this.props.origY,
             isDragging:false,
+            isRotateable:false,
             svgWidth:this.props.svgWidth, 
 			svgHeight:this.props.svgHeight, 
 			svgOffsetTop:this.props.svgOffsetTop,
@@ -49,20 +50,6 @@ export default class PuzzlePiece extends Component {
 							d={this.state.path}
                             fill={`url(#pattern${this.state.patternNum})`} 
                             
-                            //this resets all the pices...don't do this
-                            // onClick={this.props.handleSelectedPiece}
-                           
-                            // onTouchStart={(e) => {
-
-                            //     // this.props.handleSelectedPiece()
-                            //     e.preventDefault();
-                            //     document.addEventListener('ontouchmove', this._handleMouseMove);
-                            //     document.addEventListener('ontouchend', this._handleMouseUp);
-                            //     this.setState({
-                            //         isDragging:true,
-                            //     })
-            
-                            //         }}
                             onTouchMove={(e) => {
                               
                                 //IPHONE REGISTERS A TOUCH MOVE.BUT I CAN'T GET X/Y POSITIONS
@@ -84,6 +71,7 @@ export default class PuzzlePiece extends Component {
                                 document.addEventListener('mouseup', this._handleMouseUp);
                                 this.setState({
                                     isDragging:true,
+                                    isRotateable:true,
                                 })
             
                                     }}
