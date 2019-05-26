@@ -36,7 +36,7 @@ export default class PuzzlePiece extends Component {
             <svg className={`puzzlesvg puz${this.state.patternNum}`}
             draggable="true"
             ref={this.PuzzlePiece}
-                is={this.state.isDragging? "drag" : ""}
+                id={this.state.isDragging? "drag" : ""}
                 // id={this.props.id} 
                 key={this.state.patternNum}
 						viewBox={`0 0 ${this.props.viewBoxWidth} ${this.props.viewBoxHeight}` }
@@ -54,38 +54,39 @@ export default class PuzzlePiece extends Component {
 
                             onMouseDown={(e) => {
                                 // this.props.handleSelectedPiece()
-
+                                e.preventDefault();
                                 document.addEventListener('mousemove', this._handleMouseMove);
+                                document.addEventListener('mouseup', this._handleMouseUp);
                                 this.setState({
                                     isDragging:true,
                                 })
-                                // console.log(this.isDragging, "isdragging in mousedown");
-                                // console.log("on mouse down: ", e.clientX, e.clientY);
-                                // console.log("my new ref width", this.PuzzlePiece)
             
                                     }
                                 }
                                 
-                            onMouseUp={(e) => {
-                                // this.isDragging=false;
+                            
+                            />
+					</svg>
+        )
+    }
+_handleMouseUp = (e) => {
+    e.preventDefault();
                                 document.removeEventListener('mousemove', this._handleMouseMove);
-
+                                console.log("mouseUp")
                                 this.setState({
                                     isDragging:false,
                                     style:{
                                         ...this.state.style,
-                                        
+                                        transformOrigin:this.state.transformOrigin,
                                         strokeWidth:"1px",
                                         
                                         stroke:"red",
                                        },
                                 })
                                 console.log("onmouseup,", e, this.state.isDragging)
-                            }}
-                            />
-					</svg>
-        )
-    }
+                            }
+
+
 _handleMouseMove = (e) => {
     console.log("my _handlemousemove", 
     `svgOffSetTop: ${this.state.svgOffsetTop}, svgOffSetLeft:${this.state.svgOffSetLeft},
@@ -96,19 +97,24 @@ _handleMouseMove = (e) => {
 
             e.preventDefault();
             if (this.state.isDragging) {
+                // console.log("moving")
+                let xmove = e.clientX-this.state.svgOffSetLeft-this.state.origX;
+                let ymove = e.clientY-this.state.svgOffSetTop-this.state.origY;
+                console.log(xmove, ymove, "are these correct");
                 this.setState({
-                    style:{...this.state.style,
-                        transform: ` translate(${e.screenX-e.clientX-this.state.svgOffSetLeft}px, 
-                                    ${e.screenY-e.clientY-this.state.svgOffSetLeft}px)
+                    style:{
+                        transformOrigin:this.state.transformOrigin,
+                        // transform: ` translate(300px, 300px)
+                        //             rotate(90deg)`,
+                        transform: ` translate(${xmove}px, 
+                                    0px)
                                     rotate(${this.state.rotateDeg}deg)`,
+
                         strokeWidth:"2px",
                         stroke:"yellow",
                         }
                 })
             }
-
-
-
 
 }
 componentDidMount() {
