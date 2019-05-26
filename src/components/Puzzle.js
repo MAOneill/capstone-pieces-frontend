@@ -10,13 +10,19 @@ export default class Puzzle extends Component {
             this.state={
 				patterns:[],
 				dataObject:puzzleDict,
-				selectedImage:null,
+				// selectedImage:null,
 				imageLoadSize:400,
 				// styleObj:{},
 				viewBoxWidth:700,
-				viewBoxHeight:700,
+				viewBoxHeight:500,
 				selectedPiece:null,
-            }
+				svgWidth:null,
+				svgHeight:null,
+				svgOffsetTop:null,
+				svgOffSetLeft:null,
+			}
+			this.puzzlesvg = React.createRef();
+			// console.log(this.puzzlesvg)
         }
 	
 
@@ -27,6 +33,8 @@ export default class Puzzle extends Component {
 			
 
 				<svg className="puzzlesvg"  
+				ref={this.puzzlesvg}
+							// draggable="true"
 								key={(new Date().getTime())}
 								// viewBox={`0 0 700 700` }
 								viewBox={`0 0 ${this.state.viewBoxWidth} ${this.state.viewBoxHeight}` }
@@ -53,6 +61,7 @@ export default class Puzzle extends Component {
 {/* all the paths go here...should be the same viewBox size as parent svg... */}
 				{this.state.dataObject.map((piece,i) => (
 					<PuzzlePiece 
+						id={`piece${piece.pat}`}
 						key={piece.pat}
 						viewBoxWidth={this.state.viewBoxWidth}
 						viewBoxHeight={this.state.viewBoxHeight}
@@ -60,12 +69,18 @@ export default class Puzzle extends Component {
 						transformOrigin={`${piece.x + (piece.w/2)}px ${piece.y +(piece.h/2)}px`}
 						stroke={piece.stroke}
 						path={piece.d}
-						rotateDeg={10}
+						origX={piece.x}
+						origY={piece.y}
+						rotateDeg={0}
 						xMove={0}
 						yMove={0}
+						svgWidth={this.state.svgWidth}
+						svgHeight={this.state.svgHeight}
+						svgOffsetTop={this.state.svgOffsetTop}
+						svgOffSetLeft={this.state.svgOffSetLeft}
 						
 						fill={`url(#pattern${piece.pat})`}
-						selected={(this.selectedPiece === piece.pat) ? true : false}
+						// selected={(this.state.selectedPiece === piece.pat) ? true : false}
 						handleSelectedPiece={() => {
 							this._selectedPiece(piece.pat)
 						}}
@@ -74,19 +89,25 @@ export default class Puzzle extends Component {
 					
 					
 				))}
-
+ {/* <use id="use" xlinkHref={`#piece${this.state.selectedPiece}`} /> */}
+ <use id="use" xlinkHref="#drag" />
 				</svg>						
 			</div>
         )
 	}
 	
 _selectedPiece = (pat) => {
+	console.log("does this get activated on a drag too? NO, IT DOESN'T...")
 	this.setState({
 		selectedPiece:pat
 	})
 }
 componentDidMount() {
-
+// console.log(this.puzzlesvg, this.puzzlesvg.current.clientWidth, this.puzzlesvg.current.clientHeight, 
+// 	this.puzzlesvg.current.parentElement.offsetTop,
+// 	this.puzzlesvg.current.parentElement.offsetLeft,
+// 	);
+	
 	const myImage = new Image(this.state.imageLoadSize,this.state.imageLoadSize);   
     myImage.src="";
     
@@ -103,7 +124,12 @@ componentDidMount() {
                 allPatternImages.push(createPatterns(oCtx,tempCanvas,piece.x,piece.y,piece.w,piece.h,i+1))
             })
             this.setState({
-                patterns:allPatternImages,
+				patterns:allPatternImages,
+				svgWidth:this.puzzlesvg.current.clientWidth, 
+				svgHeight:this.puzzlesvg.current.clientHeight, 
+				svgOffsetTop:this.puzzlesvg.current.parentElement.offsetTop,
+				svgOffSetLeft:this.puzzlesvg.current.parentElement.offsetLeft,
+
 				// dataObject:dataObject,
 				// styleObj:styleObj,
             }) 

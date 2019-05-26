@@ -11,20 +11,34 @@ export default class PuzzlePiece extends Component {
             stroke:"red",
             selected:this.props.selectedPiece,
             patternNum:this.props.patternNum,
-            transformOrigin:this.props.tranformOrigin,
+            transformOrigin:this.props.transformOrigin,
             path:this.props.path,
+            origX:this.props.origX,
+            origY:this.props.origY,
+            isDragging:false,
+            svgWidth:this.props.svgWidth, 
+			svgHeight:this.props.svgHeight, 
+			svgOffsetTop:this.props.svgOffsetTop,
+			svgOffSetLeft:this.props.svgOffSetLeft,
             style:{
             
-                 transform: `rotate(${this.props.rotateDeg}deg) translate(${this.props.xMove}px, ${this.props.yMove}px)`,
+                 transform: ` translate(${this.props.xMove}px, ${this.props.yMove}px)
+                              rotate(${this.props.rotateDeg}deg)`,
                  transformOrigin:this.props.transformOrigin,
                  stroke:this.props.stroke,
                 }
         }
+        this.PuzzlePiece = React.createRef();
+        this.isDragging=false;
     }
     render() {
         return (
             <svg className={`puzzlesvg puz${this.state.patternNum}`}
-					key={this.state.patternNum}
+            draggable="true"
+            ref={this.PuzzlePiece}
+                is={this.state.isDragging? "drag" : ""}
+                // id={this.props.id} 
+                key={this.state.patternNum}
 						viewBox={`0 0 ${this.props.viewBoxWidth} ${this.props.viewBoxHeight}` }
 
 						xmlns="http://www.w3.org/2000/svg" 
@@ -33,31 +47,71 @@ export default class PuzzlePiece extends Component {
                             style={this.state.style}
 
 							d={this.state.path}
-							fill={`url(#pattern${this.state.patternNum})`} />
+                            fill={`url(#pattern${this.state.patternNum})`} 
+                            
+                            //this resets all the pices...don't do this
+                            // onClick={this.props.handleSelectedPiece}
+
+                            onMouseDown={(e) => {
+                                // this.props.handleSelectedPiece()
+
+                                document.addEventListener('mousemove', this._handleMouseMove);
+                                this.setState({
+                                    isDragging:true,
+                                })
+                                // console.log(this.isDragging, "isdragging in mousedown");
+                                // console.log("on mouse down: ", e.clientX, e.clientY);
+                                // console.log("my new ref width", this.PuzzlePiece)
+            
+                                    }
+                                }
+                                
+                            onMouseUp={(e) => {
+                                // this.isDragging=false;
+                                document.removeEventListener('mousemove', this._handleMouseMove);
+
+                                this.setState({
+                                    isDragging:false,
+                                    style:{
+                                        ...this.state.style,
+                                        
+                                        strokeWidth:"1px",
+                                        
+                                        stroke:"red",
+                                       },
+                                })
+                                console.log("onmouseup,", e, this.state.isDragging)
+                            }}
+                            />
 					</svg>
         )
     }
+_handleMouseMove = (e) => {
+    console.log("my _handlemousemove", 
+    `svgOffSetTop: ${this.state.svgOffsetTop}, svgOffSetLeft:${this.state.svgOffSetLeft},
+    svgWidth:${this.state.svgWidth}, svgHeight:${this.state.svgHeight},
+    e.screenX: ${e.screenX}, e.clientX:${e.clientX}, 
+    e.screenY:${e.screenY}, e.clientY${e.clientY}`);
 
-componentWillMount() {
-    console.log("transform Origin", this.props.transformOrigin);
-    //assign random deg turns and positioning
-    let x = 600;
-    let y = 20;
-    let deg = -30;
-    if (this.state.patternNum === 54) {
-        //you must move x and y first THEN ROTATE!!!
-        this.setState({
-            
-            style:{
-                stroke:"orange",
-                transformOrigin:this.state.transformOrigin,
-                transform: ` translate(${x}px, ${y}px) rotate(${deg}deg)`,
-             
 
+            e.preventDefault();
+            if (this.state.isDragging) {
+                this.setState({
+                    style:{...this.state.style,
+                        transform: ` translate(${e.screenX-e.clientX-this.state.svgOffSetLeft}px, 
+                                    ${e.screenY-e.clientY-this.state.svgOffSetLeft}px)
+                                    rotate(${this.state.rotateDeg}deg)`,
+                        strokeWidth:"2px",
+                        stroke:"yellow",
+                        }
+                })
             }
 
-        })
-    }
+
+
+
+}
+componentDidMount() {
 }
 
 }

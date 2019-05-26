@@ -76,13 +76,15 @@
   width:100vh;
 }
 .puzzlesvg {
-  width:100vh;
+  width:90vh;
   /* height:1000px; */
   overflow:visible;
   transform: translate(50% 50%)
+  
 }
 .thepuzzleContainer {
-
+border:2px solid white;
+margin:5px;
 }
 
 #pictureframe {
