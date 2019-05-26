@@ -64,8 +64,7 @@ export default class PuzzlePiece extends Component {
             
                             //         }}
                             onTouchMove={(e) => {
-                                // alert(`touch move e.screenX: ${e.screenX}, e.clientX:${e.clientX}, 
-                                // e.screenY:${e.screenY}, e.clientY:${e.clientY}`)
+                              
                                 //IPHONE REGISTERS A TOUCH MOVE.BUT I CAN'T GET X/Y POSITIONS
                                 //FROM THE EVENT ON THE SVG PIECE.
                                 this.setState({
@@ -73,8 +72,10 @@ export default class PuzzlePiece extends Component {
                                 })
                                 document.addEventListener('touchmove', this._handleMouseMove, { passive: false });
                                 document.addEventListener('touchup', this._handleMouseUp, { passive: false });
+                                
                                 // this._handleMouseMove(e)
                             }}
+                            
                             onMouseDown={(e) => {
                             // alert("mouse down")
                                 // this.props.handleSelectedPiece()
@@ -106,8 +107,14 @@ _handleMouseUp = (e) => {
     e.preventDefault();
                                 document.removeEventListener('mousemove', this._handleMouseMove);
                                 document.removeEventListener('touchmove',this._handleMouseMove)
-                                console.log("mouseUp")
+                                // console.log("mouseUp")
                                 // alert("mouse up")
+
+                                //this is NOT getting triggered in phone, because I'm not
+                                //touching hte piece.  the touchup is supposed to be on th edocuent...
+                                //but its not recognizing it...  but if I tap and release
+                                //the piece it works...so....
+                                //get positioning correct, should work....
                                 this.setState({
                                     isDragging:false,
                                     style:{
@@ -122,7 +129,9 @@ _handleMouseUp = (e) => {
 
 
 _handleMouseMove = (e) => {
-    // alert("mose move")
+    // alert("mose move")    //iphone gets here!!!
+    //   alert(`touch move e.screenX: ${e.screenX}, e.clientX:${e.clientX}, 
+    //                             e.screenY:${e.screenY}, e.clientY:${e.clientY}`)
     console.log("my _handlemousemove", 
     `svgOffSetTop: ${this.state.svgOffsetTop}, svgOffSetLeft:${this.state.svgOffSetLeft},
     svgWidth:${this.state.svgWidth}, svgHeight:${this.state.svgHeight},
@@ -130,14 +139,25 @@ _handleMouseMove = (e) => {
     e.screenY:${e.screenY}, e.clientY:${e.clientY},
     this.state.origY:${this.state.origY}`,e);
 
+    let clientX, clientY;
+    //touches are the iphone x and y.  this works
+    if (e.touches) {
+         clientX = e.touches[0].clientX;
+         clientY = e.touches[0].clientY;
+        // alert(`clientX: ${clientX} clientY: ${clientY}`)
+    }
+    else {
+        clientX = e.clientX;
+        clientY = e.clientY;
+    }
 
             e.preventDefault();
             if (this.state.isDragging) {
                 // console.log("moving")
                 
-                let xmove = e.clientX - this.state.svgOffSetLeft - 
+                let xmove = clientX - this.state.svgOffSetLeft - 
                         (this.state.origX * this.state.svgWidth/500);
-                let ymove = e.clientY  - this.state.svgOffsetTop - 
+                let ymove = clientY  - this.state.svgOffsetTop - 
                         (this.state.origY * this.state.svgHeight/700);
                 console.log(xmove, ymove, "are these correct");
                 this.setState({
@@ -157,6 +177,7 @@ _handleMouseMove = (e) => {
 
 }
 componentDidMount() {
+  
 }
 
 }
