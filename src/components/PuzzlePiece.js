@@ -99,10 +99,27 @@ export default class PuzzlePiece extends Component {
                             {/* use this to rotate.  only show it if selected. */}
                             <circle r="5px" cx={this.props.origX} cy={this.props.origY} 
                             style={this.state.style}
+                            onClick={this._handleRotation}
                             fill="yellow" />
 					</svg>
         )
     }
+_handleRotation = () => {
+    this.setState({
+        rotateDeg:this.state.rotateDeg + 90,
+        style:{
+            transformOrigin:this.state.transformOrigin,
+            // transform: ` translate(300px, 300px)
+            //             rotate(90deg)`,
+            transform: ` translate(${this.state.xMove}px, 
+                        ${this.state.yMove}px)
+                        rotate(${this.state.rotateDeg + 90}deg)`,
+
+            strokeWidth:"2px",
+            stroke:"yellow",
+            }
+    })
+}
 _handleMouseUp = (e) => {
     e.preventDefault();
                                 document.removeEventListener('mousemove', this._handleMouseMove);
@@ -172,6 +189,8 @@ _handleMouseMove = (e) => {
                 //         (this.state.origY * this.state.svgHeight/500);
                 console.log(xmove, ymove, "are these correct");
                 this.setState({
+                    xMove:xmove,
+                    yMove:ymove,
                     style:{
                         transformOrigin:this.state.transformOrigin,
                         // transform: ` translate(300px, 300px)
