@@ -87,6 +87,10 @@
 }
 
 .puzzleboard {
+  width:90vw; 
+  /* this works but it makes no sense */
+  width: calc(5/7 * 100vw);
+  
   display:grid;
   grid-template-columns: 80% 20%;
   /* grid-template-rows: 100%; */
@@ -94,6 +98,7 @@
 }
 .puzzlesvg {
   width:90vh;
+  width:100%;
   /* height:1000px; */
   overflow:visible;
   /* transform: translate(50% 50%) */
@@ -101,7 +106,7 @@
 }
 .thepuzzleContainer {
 border:2px solid white;
-margin:5px;
+/* margin:5px; */
 }
 
 .hidethis {
