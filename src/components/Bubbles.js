@@ -64,11 +64,52 @@ export default class Bubbles extends Component {
                 <img  id="myimg" onLoad={this._imgOnLoad} src={`./${this.props.userPhoto}`} alt="user supplied"></img>
                 : <img id="myimg" onLoad={this._imgOnLoad} src="./photos/sharks.jpg" alt="default "></img>
                 }
+            {/* allow user to change the number of bubbles */}
+            <label for="#numbercircles">Change the number of Circles:</label>
+            <input id="numbercircles" type="number" 
+                min="2" max="20"
+                    onChange={(e) => {
+
+
+                this.setState({
+                    numberOfCircles:e.target.value,
+                })
+
+                const myImage = new Image(this.state.imageLoadSize,this.state.imageLoadSize);   
+                myImage.src="";
+                
+                myImage.onload = () => {
+                    const size = myImage.width
+                    //set contants
+                        const numberOfCircles = this.state.numberOfCircles;
+                        //create patterns and load them to state
+                        console.log("CREATING PATTERNS")
+                        const oCtx =  loadImageToCanvas(myImage ,size, size)
+                        const patternWidth = parseInt(size/numberOfCircles) //same as this.width
+                        const dataObject = createDataArray(numberOfCircles,patternWidth,patternWidth)
+                    
+                        const tempCanvas = createTempCanvas(patternWidth,patternWidth);
+                        
+                        const allPatternImages = []
+                        dataObject.forEach((d,i) => {
+                            allPatternImages.push(createPatterns(oCtx,tempCanvas,d.x,d.y,d.pW,d.pH,i+1))
+                        })
+                        this.setState({
+                            patterns:allPatternImages,
+                            dataObject:dataObject,
+                        }) 
+                  }
+                  
+                  this.props.userPhoto ?  myImage.src = `./${this.props.userPhoto}` : myImage.src =`./photos/sharks.jpg`   ;
+               
+
+            }} />
             </div>
         </div>
       </div>
     )
   }
+  
   componentDidMount() {
 //   }
   
