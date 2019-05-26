@@ -28,14 +28,14 @@ export default class PuzzlePiece extends Component {
                  stroke:this.props.stroke,
                 }
         }
-        this.PuzzlePiece = React.createRef();
-        this.isDragging=false;
+        // this.PuzzlePiece = React.createRef();
+        // this.isDragging=false;
     }
     render() {
         return (
             <svg className={`puzzlesvg puz${this.state.patternNum}`}
             draggable="true"
-            ref={this.PuzzlePiece}
+            // ref={this.PuzzlePiece}
                 id={this.state.isDragging? "drag" : ""}
                 // id={this.props.id} 
                 key={this.state.patternNum}
