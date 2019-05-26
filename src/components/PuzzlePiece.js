@@ -97,8 +97,13 @@ export default class PuzzlePiece extends Component {
         )
     }
 _handleRotation = () => {
+    let bordercolor = "red"
+    if ((this.state.xMove === 0) && (this.state.yMove === 0) && ((this.state.rotateDeg + 90) === 0)) {
+        bordercolor = "green"
+    }
     this.setState({
         rotateDeg:(this.state.rotateDeg + 90) % 360 ,
+        stroke:bordercolor,
         style:{
             transformOrigin:this.state.transformOrigin,
             // transform: ` translate(300px, 300px)
