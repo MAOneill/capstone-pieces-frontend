@@ -58,6 +58,7 @@ export default class Puzzle extends Component {
 								))}
 
 				</defs>
+				<rect width="400px" height="400px" stroke="white" fill="white"/>
 {/* all the paths go here...should be the same viewBox size as parent svg... */}
 				{this.state.dataObject.map((piece,i) => (
 					<PuzzlePiece 

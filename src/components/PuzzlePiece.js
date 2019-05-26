@@ -108,7 +108,7 @@ _handleRotation = () => {
                         rotate(${(this.state.rotateDeg + 90)%360}deg)`,
 
             strokeWidth:"2px",
-            stroke:"green",
+            stroke:"yellow",
             }
     })
 }
@@ -189,6 +189,7 @@ _handleMouseMove = (e) => {
             if (this.state.isDragging) {
                 // console.log("moving") 
                 let bordercolor="";
+                let strokecolor="red"
                 let xmove= (-this.state.origX  + ((clientX -this.state.svgOffSetLeft) * 700/this.state.svgWidth) )
                 let ymove =( -this.state.origY  + ((clientY -this.state.svgOffsetTop) * 500/this.state.svgHeight) )
                 
@@ -202,21 +203,17 @@ _handleMouseMove = (e) => {
 
                 if ((xmove===0) && (ymove===0)) {
                     bordercolor="green"
+                    if(this.state.rotateDeg === 0) {
+                        strokecolor="green"
+                    }
                 }
                 else bordercolor="yellow"
-                // let xmove = clientX - this.state.svgOffSetLeft - 
-                //         (this.state.origX );
-                // let ymove = clientY  - this.state.svgOffsetTop - 
-                //         (this.state.origY );
-                // let xmove = clientX - this.state.svgOffSetLeft - 
-                //         (this.state.origX * this.state.svgWidth/700);
-                // let ymove = clientY  - this.state.svgOffsetTop - 
-                //         (this.state.origY * this.state.svgHeight/500);
                 
                 console.log(xmove, ymove, "are these correct");
                 this.setState({
                     xMove:xmove,
                     yMove:ymove,
+                    stroke:strokecolor,
                     style:{
                         transformOrigin:this.state.transformOrigin,
                         // transform: ` translate(300px, 300px)
