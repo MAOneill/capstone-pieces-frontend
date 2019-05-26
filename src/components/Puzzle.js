@@ -107,7 +107,7 @@ componentDidMount() {
 // 	this.puzzlesvg.current.parentElement.offsetTop,
 // 	this.puzzlesvg.current.parentElement.offsetLeft,
 // 	);
-	
+	console.log(this.puzzlesvg);
 	const myImage = new Image(this.state.imageLoadSize,this.state.imageLoadSize);   
     myImage.src="";
     

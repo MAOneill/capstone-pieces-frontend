@@ -137,28 +137,39 @@ _handleMouseMove = (e) => {
     svgWidth:${this.state.svgWidth}, svgHeight:${this.state.svgHeight},
     e.screenX: ${e.screenX}, e.clientX:${e.clientX}, 
     e.screenY:${e.screenY}, e.clientY:${e.clientY},
-    this.state.origY:${this.state.origY}`,e);
+    this.state.origY:${this.state.origY}
+    this.state.origX:${this.state.origX}`);
 
-    let clientX, clientY;
+    let clientX, clientY, magnifyer;
     //touches are the iphone x and y.  this works
+
+    //trying to use magnifyer to account for pixel ratio on iphone....not working
     if (e.touches) {
          clientX = e.touches[0].clientX;
          clientY = e.touches[0].clientY;
+         magnifyer=2;
+         console.log("touchevent",e);
         // alert(`clientX: ${clientX} clientY: ${clientY}`)
     }
     else {
         clientX = e.clientX;
         clientY = e.clientY;
+        magnifyer=1;
     }
 
             e.preventDefault();
             if (this.state.isDragging) {
-                // console.log("moving")
-                
-                let xmove = clientX - this.state.svgOffSetLeft - 
-                        (this.state.origX * this.state.svgWidth/500);
-                let ymove = clientY  - this.state.svgOffsetTop - 
-                        (this.state.origY * this.state.svgHeight/700);
+                // console.log("moving") 
+                let xmove= (-this.state.origX  + ((clientX -this.state.svgOffSetLeft) * 700/this.state.svgWidth) )
+                let ymove =( -this.state.origY  + ((clientY -this.state.svgOffsetTop) * 500/this.state.svgHeight) )
+                // let xmove = clientX - this.state.svgOffSetLeft - 
+                //         (this.state.origX );
+                // let ymove = clientY  - this.state.svgOffsetTop - 
+                //         (this.state.origY );
+                // let xmove = clientX - this.state.svgOffSetLeft - 
+                //         (this.state.origX * this.state.svgWidth/700);
+                // let ymove = clientY  - this.state.svgOffsetTop - 
+                //         (this.state.origY * this.state.svgHeight/500);
                 console.log(xmove, ymove, "are these correct");
                 this.setState({
                     style:{
