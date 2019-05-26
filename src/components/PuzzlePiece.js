@@ -61,9 +61,8 @@ export default class PuzzlePiece extends Component {
                                     isDragging:true,
                                 })
             
-                                    }
-                                }
-                                
+                                    }}
+                           
                             
                             />
 					</svg>
@@ -78,8 +77,7 @@ _handleMouseUp = (e) => {
                                     style:{
                                         ...this.state.style,
                                         transformOrigin:this.state.transformOrigin,
-                                        strokeWidth:"1px",
-                                        
+                                        strokeWidth:"1px",                                        
                                         stroke:"red",
                                        },
                                 })
@@ -92,14 +90,17 @@ _handleMouseMove = (e) => {
     `svgOffSetTop: ${this.state.svgOffsetTop}, svgOffSetLeft:${this.state.svgOffSetLeft},
     svgWidth:${this.state.svgWidth}, svgHeight:${this.state.svgHeight},
     e.screenX: ${e.screenX}, e.clientX:${e.clientX}, 
-    e.screenY:${e.screenY}, e.clientY${e.clientY}`);
+    e.screenY:${e.screenY}, e.clientY:${e.clientY},
+    this.state.origY:${this.state.origY}`);
 
 
             e.preventDefault();
             if (this.state.isDragging) {
                 // console.log("moving")
-                let xmove = e.clientX-this.state.svgOffSetLeft-this.state.origX;
-                let ymove = e.clientY-this.state.svgOffSetTop-this.state.origY;
+                let xmove = e.clientX - this.state.svgOffSetLeft - 
+                        (this.state.origX * this.state.svgHeight/500);
+                let ymove = e.clientY  - this.state.svgOffsetTop - 
+                        (this.state.origY * this.state.svgWidth/700);
                 console.log(xmove, ymove, "are these correct");
                 this.setState({
                     style:{
@@ -107,7 +108,7 @@ _handleMouseMove = (e) => {
                         // transform: ` translate(300px, 300px)
                         //             rotate(90deg)`,
                         transform: ` translate(${xmove}px, 
-                                    0px)
+                                    ${ymove}px)
                                     rotate(${this.state.rotateDeg}deg)`,
 
                         strokeWidth:"2px",
