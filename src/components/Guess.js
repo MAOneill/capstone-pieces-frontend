@@ -106,7 +106,10 @@ export default class Guess extends Component {
             <h4>{this.state.message}</h4>
 
             {this.state.numberTurns > 0 ? 
+            <div>
+            <h5>The previous image was:</h5>
             <img className="prevImgThumb" src={`./guessing/${this.state.photos[this.state.photoOrder[this.state.numberTurns-1]].photo}`}></img>
+            </div>
             : null}
             </div> 
          </div>
@@ -219,14 +222,15 @@ _submitAnswer = (e) => {
     if (this.state.guessSelection === null) {
         //do nothing
     }
+    //WRONG SELECTION
     else if (parseInt(this.state.guessSelection) !== parseInt(this.state.photoKey)) {
         console.log(`${this.state.guessSelection} not equal to ${this.state.photoKey}`)
         //you lose
         
         this.setState({
             guessSelection:null,
-            message:"sorry, that is INcorrect",
-            numberOfTurns:this.state.numberTurns+1,
+            message:"sorry, that is incorrect",
+            numberTurns:this.state.numberTurns+1,
             isGameOver:true,
 
         })
