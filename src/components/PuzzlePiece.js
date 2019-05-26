@@ -31,6 +31,7 @@ export default class PuzzlePiece extends Component {
         }
         // this.PuzzlePiece = React.createRef();
         // this.isDragging=false;
+        this.timeout="";
     }
     render() {
         return (
@@ -85,10 +86,13 @@ export default class PuzzlePiece extends Component {
                             
                             />
                             {/* use this to rotate.  only show it if selected. */}
-                            <circle r="5px" cx={this.props.origX} cy={this.props.origY} 
-                            style={this.state.style}
-                            onClick={this._handleRotation}
-                            fill="yellow" />
+                            {this.state.isRotateable ? 
+                                <circle r="5px" cx={this.props.origX} cy={this.props.origY} 
+                                style={this.state.style}
+                                onClick={this._handleRotation}
+                                fill="yellow" />
+                            :null}
+                            
 					</svg>
         )
     }
@@ -104,12 +108,17 @@ _handleRotation = () => {
                         rotate(${this.state.rotateDeg + 90}deg)`,
 
             strokeWidth:"2px",
-            stroke:"yellow",
+            stroke:"green",
             }
     })
 }
 _handleMouseUp = (e) => {
     e.preventDefault();
+    //this clears all the timeouts that are running...so there is only one.
+    //otherwise, eveytime you mouseup on the piece it creates timeoout interval and the 
+    //rotate button becomes unreliable.  this way, there is only ONE timeout event
+    //to remove the rotate button from the LAST mouse up event
+                clearTimeout(this.timeout)
                                 document.removeEventListener('mousemove', this._handleMouseMove);
                                 document.removeEventListener('touchmove',this._handleMouseMove)
                                 // console.log("mouseUp")
@@ -129,7 +138,21 @@ _handleMouseUp = (e) => {
                                         stroke:"red",
                                        },
                                 })
-                                console.log("onmouseup,", e, this.state.isDragging)
+                                // console.log("onmouseup,", e, this.state.isDragging)
+                                
+                                     this.timeout = setTimeout(() => {
+                                        this.setState({
+                                            isRotateable:false,
+                                            style:{
+                                                ...this.state.style,
+                                                
+                                                strokeWidth:"1px",                                        
+                                                stroke:"red",
+                                               },
+                                        })
+                                    },5000);
+                                        
+                                
                             }
 
 
