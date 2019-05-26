@@ -110,7 +110,10 @@ export default class Guess extends Component {
             )}
             {/* upon select - either lose/win, select new image */}
             <h4>{this.state.message}</h4>
-            
+
+            {this.state.numberTurns > 0 ? 
+            <img className="prevImgThumb" src={`./guessing/${this.state.photos[this.state.photoOrder[this.state.numberTurns-1]].photo}`}></img>
+            : null}
             </div> 
          </div>
 
@@ -131,6 +134,8 @@ export default class Guess extends Component {
           guessSelection:e.target.value
       })
   }
+
+  
 _newGame = () => {
 
             //do everything in component did mount, again:

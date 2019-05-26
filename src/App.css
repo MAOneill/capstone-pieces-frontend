@@ -134,6 +134,10 @@ margin:5px;
   list-style: none;
   text-align: left;
 }
+.prevImgThumb  {
+  width:100px;
+  height:100px;
+}
 .bright {
   background-color: yellow;
  filter: brightness(1.2);
