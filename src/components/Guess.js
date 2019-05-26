@@ -26,7 +26,6 @@ export default class Guess extends Component {
             answerList:[],
             guessSelection:null,
             isGameOver:false,
-            // clearDefs:false,
 
         }
         this.width = parseInt(this.state.imageLoadSize / this.state.numberOfCircles);
@@ -37,9 +36,6 @@ export default class Guess extends Component {
       <div>
             
         <div >
-        {/* {this.state.clearDefs ? 
-                 null :
-                 ( */}
                 <svg id="patterns"  
                 style={{opacity:((this.state.numberTurns % 2) ? 1 : .99)}}
                 key={(new Date().getTime())}
@@ -70,8 +66,6 @@ export default class Guess extends Component {
                         ))}
                     </defs>
                 </svg>
-{/*                      
-                 )}    */}
         </div>
 
         <div className="guessGrid">
@@ -164,7 +158,6 @@ _newGame = () => {
                             answerList:answerList,
                             guessSelection:null,
                             isGameOver:false,
-                            // clearDefs:false,
                         })
             
 
@@ -233,14 +226,9 @@ _submitAnswer = (e) => {
         this.setState({
             guessSelection:null,
             message:"sorry, that is INcorrect",
+            numberOfTurns:this.state.numberTurns+1,
             isGameOver:true,
-            // clearDefs:true,
-            // clearDefs:false,
 
-        },() => {
-            this.setState({
-                // clearDefs:false,
-            })
         })
         console.log(`The number correct is ${this.state.numberCorrect}`);
         this._addScore(this.state.numberCorrect)
@@ -280,13 +268,8 @@ _submitAnswer = (e) => {
                 message:"correct, guess again." ,
                 answerList:answerList,
                 numberOfCircles:this.state.numberOfCircles + 1,
-                // clearDefs:true,
-                // clearDefs:false,
             }, ()=> {
                 console.log("we are running correct guess")
-                this.setState({
-                    // clearDefs:false,
-                })
             })
         }
 
@@ -336,7 +319,6 @@ console.log(`The value we are tyring to add is ${value}`);
                     this.setState({
                         patterns:allPatternImages,
                         dataObject:dataObject,
-                        // clearDefs:false,
                     }) 
 
                 },500)
@@ -348,36 +330,6 @@ console.log(`The value we are tyring to add is ${value}`);
 
 }
 
-
-// _secondaryImageLoad = (myImage) => {
-//         console.log("a 2nd image onload function")
-//         console.log("this.props.selectedImage is ", this.state.selectedImage)
-//         const size = myImage.width
-//         console.log("my image", myImage.src);
-        
-//         //set contants
-//         const numberOfCircles = this.state.numberOfCircles;
-//         //create patterns and load them to state
-//         console.log("natural height should not be zero", myImage.naturalHeight)
-//         const oCtx =  loadImageToCanvas(myImage ,size, size)
-//         const patternWidth = parseInt(size/numberOfCircles) //same as this.width
-//         const dataObject = createDataArray(numberOfCircles,patternWidth,patternWidth)
-        
-//         const tempCanvas = createTempCanvas(patternWidth,patternWidth);
-        
-//         const allPatternImages = []
-//         dataObject.forEach((d,i) => {
-//             allPatternImages.push(createPatterns(oCtx,tempCanvas,d.x,d.y,d.pW,d.pH,i+1))
-//         })
-        
-//         console.log(allPatternImages.map((i)=> i.src))
-//         this.setState({
-//             patterns:allPatternImages,
-//             dataObject:dataObject,
-//             clearDefs:false,
-//         }) 
-    
-// }
 }
 
 function loadImageToCanvas(loadedImage,canvasWidth, canvasHeight) {
