@@ -98,14 +98,14 @@ export default class PuzzlePiece extends Component {
     }
 _handleRotation = () => {
     this.setState({
-        rotateDeg:this.state.rotateDeg + 90,
+        rotateDeg:(this.state.rotateDeg + 90) % 360 ,
         style:{
             transformOrigin:this.state.transformOrigin,
             // transform: ` translate(300px, 300px)
             //             rotate(90deg)`,
             transform: ` translate(${this.state.xMove}px, 
                         ${this.state.yMove}px)
-                        rotate(${this.state.rotateDeg + 90}deg)`,
+                        rotate(${(this.state.rotateDeg + 90)%360}deg)`,
 
             strokeWidth:"2px",
             stroke:"green",
@@ -135,7 +135,7 @@ _handleMouseUp = (e) => {
                                         ...this.state.style,
                                         transformOrigin:this.state.transformOrigin,
                                         strokeWidth:"1px",                                        
-                                        stroke:"red",
+                                        stroke:this.state.stroke,
                                        },
                                 })
                                 // console.log("onmouseup,", e, this.state.isDragging)
@@ -147,7 +147,7 @@ _handleMouseUp = (e) => {
                                                 ...this.state.style,
                                                 
                                                 strokeWidth:"1px",                                        
-                                                stroke:"red",
+                                                stroke:this.state.stroke,
                                                },
                                         })
                                     },5000);
@@ -188,8 +188,22 @@ _handleMouseMove = (e) => {
             e.preventDefault();
             if (this.state.isDragging) {
                 // console.log("moving") 
+                let bordercolor="";
                 let xmove= (-this.state.origX  + ((clientX -this.state.svgOffSetLeft) * 700/this.state.svgWidth) )
                 let ymove =( -this.state.origY  + ((clientY -this.state.svgOffsetTop) * 500/this.state.svgHeight) )
+                
+                //if the pice is within 5 pixels of the origin, set the move offset to zero:
+                if ((xmove < 5) && (xmove > -5)) {
+                    xmove = 0
+                }
+                if ((ymove < 5) && (ymove > -5)) {
+                    ymove = 0
+                }
+
+                if ((xmove===0) && (ymove===0)) {
+                    bordercolor="green"
+                }
+                else bordercolor="yellow"
                 // let xmove = clientX - this.state.svgOffSetLeft - 
                 //         (this.state.origX );
                 // let ymove = clientY  - this.state.svgOffsetTop - 
@@ -198,6 +212,7 @@ _handleMouseMove = (e) => {
                 //         (this.state.origX * this.state.svgWidth/700);
                 // let ymove = clientY  - this.state.svgOffsetTop - 
                 //         (this.state.origY * this.state.svgHeight/500);
+                
                 console.log(xmove, ymove, "are these correct");
                 this.setState({
                     xMove:xmove,
@@ -211,7 +226,7 @@ _handleMouseMove = (e) => {
                                     rotate(${this.state.rotateDeg}deg)`,
 
                         strokeWidth:"2px",
-                        stroke:"yellow",
+                        stroke:bordercolor,
                         }
                 })
             }
@@ -234,7 +249,7 @@ componentDidMount() {
                     rotate(${randomRotate}deg)`,
 
         strokeWidth:"1px",
-        stroke:"red",
+        stroke:this.state.stroke,
         }
   })
   
