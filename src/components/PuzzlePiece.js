@@ -52,9 +52,31 @@ export default class PuzzlePiece extends Component {
                             //this resets all the pices...don't do this
                             // onClick={this.props.handleSelectedPiece}
                            
-                            
+                            // onTouchStart={(e) => {
+
+                            //     // this.props.handleSelectedPiece()
+                            //     e.preventDefault();
+                            //     document.addEventListener('ontouchmove', this._handleMouseMove);
+                            //     document.addEventListener('ontouchend', this._handleMouseUp);
+                            //     this.setState({
+                            //         isDragging:true,
+                            //     })
+            
+                            //         }}
+                            onTouchMove={(e) => {
+                                // alert(`touch move e.screenX: ${e.screenX}, e.clientX:${e.clientX}, 
+                                // e.screenY:${e.screenY}, e.clientY:${e.clientY}`)
+                                //IPHONE REGISTERS A TOUCH MOVE.BUT I CAN'T GET X/Y POSITIONS
+                                //FROM THE EVENT ON THE SVG PIECE.
+                                this.setState({
+                                    isDragging:true,
+                                })
+                                document.addEventListener('touchmove', this._handleMouseMove, { passive: false });
+                                document.addEventListener('touchup', this._handleMouseUp, { passive: false });
+                                // this._handleMouseMove(e)
+                            }}
                             onMouseDown={(e) => {
-                            
+                            // alert("mouse down")
                                 // this.props.handleSelectedPiece()
                                 e.preventDefault();
                                 document.addEventListener('mousemove', this._handleMouseMove);
@@ -66,6 +88,7 @@ export default class PuzzlePiece extends Component {
                                     }}
 
                                 onClick={(e) => {
+                                  
                                     e.preventDefault();
                                     console.log("click only");
                                 }}
@@ -82,7 +105,9 @@ export default class PuzzlePiece extends Component {
 _handleMouseUp = (e) => {
     e.preventDefault();
                                 document.removeEventListener('mousemove', this._handleMouseMove);
+                                document.removeEventListener('touchmove',this._handleMouseMove)
                                 console.log("mouseUp")
+                                // alert("mouse up")
                                 this.setState({
                                     isDragging:false,
                                     style:{
@@ -97,6 +122,7 @@ _handleMouseUp = (e) => {
 
 
 _handleMouseMove = (e) => {
+    // alert("mose move")
     console.log("my _handlemousemove", 
     `svgOffSetTop: ${this.state.svgOffsetTop}, svgOffSetLeft:${this.state.svgOffSetLeft},
     svgWidth:${this.state.svgWidth}, svgHeight:${this.state.svgHeight},
