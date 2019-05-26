@@ -46,17 +46,6 @@ export default class Bubbles extends Component {
                         </pattern>
                     ))}
                 </defs>
-                        {/* circles go here , but we aren't using these*/}
-                        {/* {this.state.dataObject.map((circle,i)=> (
-                            <circle key={i} r={circle.radius} 
-                                    cx={circle.x+(circle.pW/2)} 
-                                    cy={circle.y+(circle.pW/2)}
-                                    // fill={`url(pattern${i+1})`}
-                                    fill={`url(`+ window.location.origin + window.location.pathname + `#pattern${i+1})`}
-                                    // fill="#499444"
-                                    >
-                                    </circle>
-                        ))} */}
             </svg>
         </div>
 
