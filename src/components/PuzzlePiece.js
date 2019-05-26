@@ -218,6 +218,25 @@ _handleMouseMove = (e) => {
 
 }
 componentDidMount() {
+
+    //create random piece positioning
+    let randomX  = parseInt(Math.random() * 700)
+    let randomY  = parseInt(Math.random() * 500)
+    let randomRotate = parseInt(Math.random() * 4) * 90
+    let xmove= (-this.state.origX  + (randomX) ) 
+    let ymove =( -this.state.origY  + (randomY) ) 
+  this.setState({
+      rotateDeg:randomRotate,
+    style:{
+        ...this.state.style,
+        transform: ` translate(${xmove}px, 
+                    ${ymove}px)
+                    rotate(${randomRotate}deg)`,
+
+        strokeWidth:"1px",
+        stroke:"red",
+        }
+  })
   
 }
 
