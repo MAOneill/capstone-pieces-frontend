@@ -15,10 +15,14 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  justify-content: start;
   font-size: calc(10px + 2vmin);
   color: white;
 }
-
+.defs {
+  height:1px;
+  
+}
 .App-link {
   color: #61dafb;
 }
@@ -81,6 +85,13 @@
 .largersvg {
   width:100vh;
 }
+
+.puzzleboard {
+  display:grid;
+  grid-template-columns: 80% 20%;
+  /* grid-template-rows: 100%; */
+  justify-content: space-between;
+}
 .puzzlesvg {
   width:90vh;
   /* height:1000px; */
@@ -124,7 +135,15 @@ margin:5px;
   height: 150px;
   /* YOU CAN HIDE THE VISIBILITY AND THE FUNCTIONALITY WILL STILL WORK */
 }
+#myimg {
+  object-fit:cover;
+  /* fill is best - it will mimic what the slicing will do */
+  object-fit: fill; 
+  /* width:100%; */
+  width: 100px;
+  height: 100px; 
 
+}
 #pictureframe img {
   object-fit:cover;
   /* fill is best - it will mimic what the slicing will do */

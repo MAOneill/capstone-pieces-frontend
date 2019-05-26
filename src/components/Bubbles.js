@@ -19,7 +19,7 @@ export default class Bubbles extends Component {
       <div className="mainbubblecontainer">
         
             
-        <div  >
+        <div className="defs" >
             <svg id="patterns" 
             key={(new Date().getTime())}
             viewBox={`0 0 ${this.state.imageLoadSize * 2} ${this.state.imageLoadSize * 2}` }
@@ -27,7 +27,7 @@ export default class Bubbles extends Component {
             xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
 
                     
-                <defs>
+                <defs >
 
                 {/* THIS HAS TO BE A SEPARATE COMPONENT - SO IT ONLY RENDERS ONCE WHEN THE IMAGE LOADS */}
                 {/* OR - DON'T USE ONLOAD FOR IMAGE - PUT THIS ALL IN COMPONENT DID MOUNT... */}

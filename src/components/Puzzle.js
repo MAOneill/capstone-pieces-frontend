@@ -29,6 +29,7 @@ export default class Puzzle extends Component {
 
     render() {
         return (
+			<div className="puzzleboard">
             <div className="thepuzzleContainer">
 			
 
@@ -42,7 +43,7 @@ export default class Puzzle extends Component {
 
 
 
-				<defs className="patternDefs">
+				<defs className="patternDefs defs">
 
 					{this.state.patterns.map((pattern,i) => (
 								<pattern id={`pattern${i+1}`} 
@@ -93,6 +94,16 @@ export default class Puzzle extends Component {
  {/* <use id="use" xlinkHref={`#piece${this.state.selectedPiece}`} /> */}
  <use id="use" xlinkHref="#drag" />
 				</svg>						
+			
+			
+			</div>
+			
+			<div>
+			{this.props.userPhoto ? 
+                <img  id="myimg" onLoad={this._imgOnLoad} src={`./${this.props.userPhoto}`} alt="user supplied"></img>
+                : <img id="myimg" onLoad={this._imgOnLoad} src="./photos/sharks.jpg" alt="default "></img>
+                }
+			</div>
 			</div>
         )
 	}

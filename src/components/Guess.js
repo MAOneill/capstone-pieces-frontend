@@ -37,7 +37,7 @@ export default class Guess extends Component {
     return (
       <div>
             
-        <div >
+        <div className="defs">
                 <svg id="patterns"  
                 style={{opacity:((this.state.numberTurns % 2) ? 1 : .99)}}
                 key={(new Date().getTime())}
