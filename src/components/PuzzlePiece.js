@@ -102,16 +102,17 @@ _handleMouseMove = (e) => {
     svgWidth:${this.state.svgWidth}, svgHeight:${this.state.svgHeight},
     e.screenX: ${e.screenX}, e.clientX:${e.clientX}, 
     e.screenY:${e.screenY}, e.clientY:${e.clientY},
-    this.state.origY:${this.state.origY}`);
+    this.state.origY:${this.state.origY}`,e);
 
 
             e.preventDefault();
             if (this.state.isDragging) {
                 // console.log("moving")
+                
                 let xmove = e.clientX - this.state.svgOffSetLeft - 
-                        (this.state.origX * this.state.svgHeight/500);
+                        (this.state.origX * this.state.svgWidth/500);
                 let ymove = e.clientY  - this.state.svgOffsetTop - 
-                        (this.state.origY * this.state.svgWidth/700);
+                        (this.state.origY * this.state.svgHeight/700);
                 console.log(xmove, ymove, "are these correct");
                 this.setState({
                     style:{
