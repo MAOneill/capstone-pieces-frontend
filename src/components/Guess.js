@@ -71,6 +71,8 @@ export default class Guess extends Component {
         </div>
 
         <div className="guessGrid">
+            {/* {this.state.isGameOver? 
+            null:  */}
             <div className="svgcontainer guessingsize">          
             
                 <D3bubbles isGameOver={this.state.isGameOver}
@@ -79,6 +81,7 @@ export default class Guess extends Component {
                         viewsize={(this.state.imageLoadSize * 2)}/>
         
             </div>
+            {/* } */}
 
 
             <div className="guessingOptions">
