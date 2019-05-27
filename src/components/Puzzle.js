@@ -29,6 +29,8 @@ export default class Puzzle extends Component {
 
     render() {
         return (
+			
+				
 			<div className="puzzleboard">
             <div className="thepuzzleContainer">
 			
@@ -98,13 +100,16 @@ export default class Puzzle extends Component {
 			
 			</div>
 			
-			<div>
+			<div className="tinyphoto">
+				
 			{this.props.userPhoto ? 
                 <img  id="myimg" onLoad={this._imgOnLoad} src={`./${this.props.userPhoto}`} alt="user supplied"></img>
                 : <img id="myimg" onLoad={this._imgOnLoad} src="./photos/sharks.jpg" alt="default "></img>
                 }
 			</div>
+			<h6 className="turnphone">This really look better if you turn your phone sideways.</h6>
 			</div>
+			
         )
 	}
 	

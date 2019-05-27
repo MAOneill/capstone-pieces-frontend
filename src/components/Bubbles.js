@@ -58,7 +58,7 @@ export default class Bubbles extends Component {
             </div> 
 
 
-            <div id="pictureframe" data-div>
+            <div className="bubblecontrols" data-div>
                 <h6>Your image:</h6>
             {/* <img  id="myimg" onLoad={this._imgOnLoad} src={`./${this.state.imageToUse}`} alt="user supplied"></img> */}
                 {this.props.userPhoto ? 

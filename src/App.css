@@ -106,7 +106,10 @@
   /* object-fit: fill; */
 
 }
-
+.deletephoto {
+  background-color: rgb(241, 81, 81);
+  color:white;
+}
 /* ******************************  NAV ELEMENT ****************************************************** */
 
 
@@ -153,29 +156,34 @@
 } */
 
 .puzzleboard {
-  width:90vw; 
+  /* width:90vw;  */
   /* this works but it makes no sense */
-  width: calc(5/7 * 100vw);
+  /* width: calc(5/7 * 100vw); */
   
-  display:grid;
-  grid-template-columns: 80% 20%;
+  display:flex;
+  flex-direction: row;
+  /* grid-template-columns: 80% 20%; */
   /* grid-template-rows: 100%; */
   justify-content: space-between;
 }
 .puzzlesvg {
-  width:90vh;
-  width:100%;
+  /* width:90vh; */
   /* height:1000px; */
   overflow:visible;
   /* transform: translate(50% 50%) */
   
 }
 .thepuzzleContainer {
+  width:100%;
 border:2px solid white;
 /* margin:5px; */
 }
-
-
+.tinyphoto {
+  padding:10px;
+}
+.turnphone {
+  display:none;
+}
 /* ******************************  GUESS  COMPONENT ************************************************** */
 
 .hidethis {
@@ -207,7 +215,7 @@ border:2px solid white;
 /* ******************************  BUBBLE  COMPONENT ************************************************** */
 
 .mainbubblecontainer {
-  width:80vw;
+  /* width:80vw; */
 }
 .bubbleoptions {
   margin:5px;
@@ -218,11 +226,17 @@ border:2px solid white;
   
 }
 .bubblegrid {
-  width:100%;
-  display:grid;
-  grid-template-columns: 80% 20%;
+  /* portrait is vw, landscape is vh */
+  /* width:90vw;   */
+  display:flex;
+  
 }
-
+.svgcontainer {
+  width:80vh;
+}
+.bubblecontrols {
+  padding:5px;
+}
 
 /* ********** MEDIA QUERIES ******************* */
 
@@ -231,23 +245,62 @@ border:2px solid white;
 	.flexbox {
     flex-direction: column;
    }
+   .bubblegrid {
+    flex-direction: row;
+  grid-template-columns: 80% 20%;
 
-  
+    /* width:90vh;  */
+
+}
+.svgcontainer {
+  width:80vh;
+}
+
+.puzzleboard {
+  flex-direction: row;
+}
+.puzzlesvg {
+  width:90vh;
+ }
+
+
 }
  /* Portrait styles */
  @media screen and (orientation:portrait) {
 	.flexbox {
     flex-direction: column;
    }
-  
+   .bubblegrid {
+    grid-template-columns: 100%;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+.svgcontainer {
+  width:90vw;
 }
+.puzzleboard {
+  flex-direction: column;
+}
+.puzzlesvg {
+  width:75vw;
+ }
+
+}
+
+
+
   @media (pointer: coarse) {
     .menu {
         display:none;
     } 
   
   }
+  @media screen and (pointer: coarse) and (orientation:portrait) {
 
-
+    .turnphone {
+      display:inline;
+    }
+  }
 
 

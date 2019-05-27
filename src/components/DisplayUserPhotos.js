@@ -38,6 +38,11 @@ render() {
                 <div key={i} className="gridbox">
                 <div className="eachphoto">
                 <img className="photoThumb" src={`./${photo.photoURL}`} alt="user supplied"></img>
+                <input type="radio" name="photoToUse" value={photo.photoURL} 
+                    onClick={(e) => {
+                        this.props.handleSelectPhoto(e.target.value)
+                    }}/> 
+                    <br />
                 <button className="deletephoto"
                     onClick={ async () => {
                         // console.log("the photo to delete is",photo);
@@ -48,16 +53,9 @@ render() {
                                 this.props.handleUpdate();
                                 this.props.handleMessage(response.data.message);
                             })
-                               
-                                  
-
-                             
                     }}
-                    >Delete</button>
-                <input type="radio" name="photoToUse" value={photo.photoURL} 
-                    onClick={(e) => {
-                        this.props.handleSelectPhoto(e.target.value)
-                    }}/> 
+                    >Delete Photo</button>
+               
                 {/* <h5>{photo.photoURL}</h5> */}
                 </div>
                 </div>
