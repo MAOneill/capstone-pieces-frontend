@@ -237,8 +237,8 @@ _handleMouseMove = (e) => {
 componentDidMount() {
 
     //create random piece positioning
-    let randomX  = parseInt(Math.random() * 700)
-    let randomY  = parseInt(Math.random() * 500)
+    let randomX  = parseInt(Math.random() * 650)
+    let randomY  = parseInt(Math.random() * 460)
     let randomRotate = parseInt(Math.random() * 4) * 90
     let xmove= (-this.state.origX  + (randomX) ) 
     let ymove =( -this.state.origY  + (randomY) ) 
