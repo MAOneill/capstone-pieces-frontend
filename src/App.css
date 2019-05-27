@@ -193,8 +193,11 @@ border:2px solid white;
 }
 .guessGrid {
   width:95vw;
-  display: grid;
-  grid-template-columns: 60% 40%;
+  /* display: grid; */
+  display:flex;
+  justify-content: space-around;
+
+  /* grid-template-columns: 60% 40%; */
 }
 .svgcontainer {
   border:2px yellow solid;
@@ -211,7 +214,9 @@ border:2px solid white;
   width:100px;
   height:100px;
 }
-
+.guessingOptions {
+  padding:10px;
+}
 /* ******************************  BUBBLE  COMPONENT ************************************************** */
 
 .mainbubblecontainer {
@@ -262,7 +267,9 @@ border:2px solid white;
 .puzzlesvg {
   width:90vh;
  }
-
+.guessGrid {
+  flex-direction: row;
+}
 
 }
  /* Portrait styles */
@@ -286,6 +293,9 @@ border:2px solid white;
   width:75vw;
  }
 
+ .guessGrid {
+  flex-direction: column;
+}
 }
 
 
