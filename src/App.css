@@ -1,11 +1,26 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
+/* **********************UNUSED********************************************************** */
+/* .App-logo {
   animation: App-logo-spin infinite 20s linear;
   height: 40vmin;
   pointer-events: none;
+} */
+
+/* @keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+} */
+/* .App-link {
+  color: #61dafb;
+} */
+
+/* ********************** GLOBAL ********************************************************** */
+
+.App {
+  text-align: center;
 }
 
 .App-header , body , .App {
@@ -19,119 +34,17 @@
   font-size: calc(10px + 2vmin);
   color: white;
 }
+
+/* ********************** SVG PATTERNS - VISIBLE BUT TINY******************************************* */
+
 .defs {
   height:1px;
   
 }
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-.flexbox {
-  display:flex;
-  width:95%;
-}
-.photoComponent{
-  width:600px;
-  width:80vw;
-  /* width can't be a percentage for the scroll box to work???? */
-  overflow-x: scroll;
-
-}
-.photogrid {
-  display:flex;
-  /* flex-wrap: wrap; */
-
-}
-.gridbox {
-  width:300px;
-  height:300px;
-  padding:10px;
-}
-.eachphoto {
-  width:200px;
-  height: 200px;
-
-}
-.eachphoto img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-fit: fill;
-
-}
-.nav {
-  position: absolute;
-  top:0;
-}
-.navelement {
-  /* padding:5px; */
-  padding: 0 5px 0 5px;
-  
-  color:white;
-  /* margin: 5px; */
-}
 #patterns {
   width:1px;  
 }
-.largersvg {
-  width:100vh;
-}
 
-.puzzleboard {
-  width:90vw; 
-  /* this works but it makes no sense */
-  width: calc(5/7 * 100vw);
-  
-  display:grid;
-  grid-template-columns: 80% 20%;
-  /* grid-template-rows: 100%; */
-  justify-content: space-between;
-}
-.puzzlesvg {
-  width:90vh;
-  width:100%;
-  /* height:1000px; */
-  overflow:visible;
-  /* transform: translate(50% 50%) */
-  
-}
-.thepuzzleContainer {
-border:2px solid white;
-/* margin:5px; */
-}
-
-.hidethis {
-  visibility: hidden;
-  /* display: none; */
-
-}
-.mainbubblecontainer {
-  width:80vw;
-}
-.bubblegrid {
-  width:100%;
-  display:grid;
-  grid-template-columns: 80% 20%;
-}
-.svgcontainer {
-  border:2px yellow solid;
-  width:100%;
-}
-
-.guessGrid {
-  width:95vw;
-  display: grid;
-  grid-template-columns: 60% 40%;
-}
 #pictureframe {
   
   object-fit:cover;
@@ -157,6 +70,128 @@ border:2px solid white;
   width: 100px;
   height: 100px; 
 }
+
+/* *************************FILE UPLOPAD ******************************************************* */
+
+.flexbox {
+  display:flex;
+  width:95%;
+}
+.photoComponent{
+  /* width:600px; */
+  width:80vw;
+  /* width can't be a percentage for the scroll box to work???? */
+  overflow-x: scroll;
+
+}
+.photogrid {
+  display:flex;
+  /* flex-wrap: wrap; */
+
+}
+.gridbox {
+  width:300px;
+  height:260px;
+  padding:10px;
+}
+.eachphoto {
+  width:200px;
+  height: 200px;
+
+}
+.eachphoto img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* object-fit: fill; */
+
+}
+
+/* ******************************  NAV ELEMENT ****************************************************** */
+
+
+.nav {
+  position: absolute;
+  top:0;
+}
+.navelement {
+  /* padding:5px; */
+  padding: 0 5px 0 5px;
+  
+  color:white;
+  /* margin: 5px; */
+}
+
+
+.bright {
+  background-color: yellow;
+ filter: brightness(1.2);
+ text-decoration: none;
+ color:black;
+ margin:5px;
+}
+.topnav {
+  background-color: rgb(0, 195, 255);
+ filter: brightness(1.1);
+ text-decoration: none;
+ color:black;
+ margin:5px;
+
+}
+.dull {
+  background-color:grey;
+ filter: brightness(.8);
+ text-decoration: none;
+
+}
+
+/* ******************************  PUZZLE COMPONENT ************************************************** */
+
+
+/* .largersvg {
+  width:100vh;
+} */
+
+.puzzleboard {
+  width:90vw; 
+  /* this works but it makes no sense */
+  width: calc(5/7 * 100vw);
+  
+  display:grid;
+  grid-template-columns: 80% 20%;
+  /* grid-template-rows: 100%; */
+  justify-content: space-between;
+}
+.puzzlesvg {
+  width:90vh;
+  width:100%;
+  /* height:1000px; */
+  overflow:visible;
+  /* transform: translate(50% 50%) */
+  
+}
+.thepuzzleContainer {
+border:2px solid white;
+/* margin:5px; */
+}
+
+
+/* ******************************  GUESS  COMPONENT ************************************************** */
+
+.hidethis {
+  visibility: hidden;
+  /* display: none; */
+
+}
+.guessGrid {
+  width:95vw;
+  display: grid;
+  grid-template-columns: 60% 40%;
+}
+.svgcontainer {
+  border:2px yellow solid;
+  width:100%;
+}
 .guessingsize {
   /* width:80vw; */
 }
@@ -168,17 +203,24 @@ border:2px solid white;
   width:100px;
   height:100px;
 }
-.bright {
-  background-color: yellow;
- filter: brightness(1.2);
- text-decoration: none;
- color:black;
-}
-.dull {
-  background-color:grey;
- filter: brightness(.8);
- text-decoration: none;
 
+/* ******************************  BUBBLE  COMPONENT ************************************************** */
+
+.mainbubblecontainer {
+  width:80vw;
+}
+.bubbleoptions {
+  margin:5px;
+  /* padding:5px; */
+}
+.circlenum {
+  font-size: 75%;
+  
+}
+.bubblegrid {
+  width:100%;
+  display:grid;
+  grid-template-columns: 80% 20%;
 }
 
 
@@ -189,18 +231,22 @@ border:2px solid white;
 	.flexbox {
     flex-direction: column;
    }
+
+  
 }
  /* Portrait styles */
  @media screen and (orientation:portrait) {
 	.flexbox {
     flex-direction: column;
    }
-
+  
 }
   @media (pointer: coarse) {
     .menu {
         display:none;
-    } }
+    } 
+  
+  }
 
 
 

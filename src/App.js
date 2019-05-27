@@ -64,7 +64,7 @@ export default class App extends Component {
         <Route exact path="/uploadphotos" 
         render={(props) => (
           <div>
-            <h2>select or upload a photo to use:</h2>
+            <h3>Pick a photo to use:</h3>
             <div className="flexbox">
             <FileUpload message={this.state.message} 
                       id={this.state.userId} 
@@ -72,7 +72,10 @@ export default class App extends Component {
                       handleMessage={this._updateMessage}/>
 
               <DisplayUserPhotos photos={this.state.pictureArray}
-                        handleSelectPhoto={this._selectedPhoto}/>
+                        handleSelectPhoto={this._selectedPhoto}
+                        handleUpdate={this._photoUpdated}
+                      handleMessage={this._updateMessage}
+                        />
 
             <PhotoActions selectedPhoto={this.state.selectedPhoto} />
             </div>
@@ -106,10 +109,8 @@ if (this.state.scoreAdded) {
       scoreArray:scoreArray.data,
       scoreAdded:false,
   })
-
     
 }
-
 }
 
   async componentDidMount() {

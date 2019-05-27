@@ -8,12 +8,12 @@ export default function MenuBar(props) {
     <div className="nav">
 
 
-<Link className="navelement" to="/out">Logout</Link>
+<Link className="navelement topnav" to="/out">Logout</Link>
 {/* logout will still need to be a component...in didMount: it will do a window.location to /login */}
-<Link className="navelement" to="/puzzle">Puzzle</Link>
-<Link className="navelement" to="/bubbles">Bubbles</Link>
-<Link className="navelement" to="/guess">Guessing Game</Link>
-<Link className="navelement" to="/uploadphotos">Upload Photos</Link>
+<Link className="navelement topnav" to="/puzzle">Puzzle</Link>
+<Link className="navelement topnav" to="/bubbles">Bubbles</Link>
+<Link className="navelement topnav" to="/guess">Guessing Game</Link>
+<Link className="navelement topnav" to="/uploadphotos">Upload Photos</Link>
 
     </div>
   )

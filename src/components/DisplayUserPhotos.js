@@ -1,19 +1,31 @@
-import React from 'react'
 
-export default function DisplayUserPhotos(props) {
 
-    let photoURL;
-    console.log("props are",props.photos[0])
-    if (props.photos.length) {
+import React, { Component } from 'react';
+import axios, {post} from 'axios';
 
-        photoURL = props.photos[0].photoURL
+
+export default class DisplayUserPhotos extends Component {
+   constructor(props) {
+       super(props);
+       this.state={
+
+       }
+    }
+    //    let photoURL;
+    // // console.log("props are",props.photos[0])
+    // if (this.props.photos.length) {
+
+    //     photoURL = this.props.photos[0].photoURL
         
-    }
-    else {
-        photoURL = null;
-    }
-    console.log(photoURL);
+    // }
+    // else {
+    //     photoURL = null;
+    // }
+    // // console.log(photoURL);
+   
 
+    
+render() {
   return (
     
       
@@ -21,14 +33,30 @@ export default function DisplayUserPhotos(props) {
         
     <div className="photogrid">
 
-        {props.photos.length ? 
-            props.photos.map((photo,i)=> (
+        {this.props.photos.length ? 
+            this.props.photos.map((photo,i)=> (
                 <div key={i} className="gridbox">
                 <div className="eachphoto">
                 <img className="photoThumb" src={`./${photo.photoURL}`} alt="user supplied"></img>
+                <button className="deletephoto"
+                    onClick={ async () => {
+                        // console.log("the photo to delete is",photo);
+                        console.log("deleting", `${photo.id}, ${photo.photoURL}`);
+                        this._deletephoto(photo.id, photo.photoURL)
+                            .then((response) => {
+                                console.log("delete photo rspon", response.data.message);
+                                this.props.handleUpdate();
+                                this.props.handleMessage(response.data.message);
+                            })
+                               
+                                  
+
+                             
+                    }}
+                    >Delete</button>
                 <input type="radio" name="photoToUse" value={photo.photoURL} 
                     onClick={(e) => {
-                        props.handleSelectPhoto(e.target.value)
+                        this.props.handleSelectPhoto(e.target.value)
                     }}/> 
                 {/* <h5>{photo.photoURL}</h5> */}
                 </div>
@@ -37,7 +65,7 @@ export default function DisplayUserPhotos(props) {
             ))
         : null
         }
-        {(props.photos.length === 0) ? 
+        {(this.props.photos.length === 0) ? 
         <div className="gridbox">
             <div className = "eachphoto">
                 <h4>You don't have any pictures</h4>
@@ -48,6 +76,15 @@ export default function DisplayUserPhotos(props) {
     </div>
     </div>
     
-  )
+  )}
 
+
+  _deletephoto = (photoid, photourl) => {
+    console.log("app.js deleting", photoid, photourl);
+
+    //photourl has slash!!  need to code for that in the route
+    return  axios.post(`main/deletephoto/${photoid}/${photourl}/`)
+    // return  axios.post(`main/deletephoto/${photoid}/`)
+    
+ }
 }

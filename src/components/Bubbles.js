@@ -59,13 +59,15 @@ export default class Bubbles extends Component {
 
 
             <div id="pictureframe" data-div>
+                <h6>Your image:</h6>
             {/* <img  id="myimg" onLoad={this._imgOnLoad} src={`./${this.state.imageToUse}`} alt="user supplied"></img> */}
                 {this.props.userPhoto ? 
                 <img  id="myimg" onLoad={this._imgOnLoad} src={`./${this.props.userPhoto}`} alt="user supplied"></img>
                 : <img id="myimg" onLoad={this._imgOnLoad} src="./photos/sharks.jpg" alt="default "></img>
                 }
             {/* allow user to change the number of bubbles */}
-            <label >Change the number of Circles:
+            <div className="bubbleoptions">
+            <label className="circlenum">Change the number of Circles:
             <input id="numbercircles" type="number" 
                 min="3" max="20"
                     onChange={(e) => {
@@ -105,6 +107,7 @@ export default class Bubbles extends Component {
 
             }} />
             </label>
+            </div>
             </div>
         </div>
       </div>
@@ -206,7 +209,7 @@ function createTempCanvas(patternWidth,patternHeight) {
     tCanvas.height = patternHeight;
     return tCanvas
 }
-
+ 
 function createPatterns(oCtx, tCanvas, patternX, patternY, patternWidth, patternHeight,i) {
     //this creates the images that will be loaded into the svg/defs/patterns
     const svgNS = "http://www.w3.org/2000/svg"

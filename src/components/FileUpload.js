@@ -22,11 +22,13 @@ export default class FileUpload extends Component {
          ref={form => this.form = form}
          encType="multipart/form-data"
          onSubmit={this._getFormData}>
+           <label>Upload a new photo:
         <input name="foo" 
         onChange={this._changeFileName} 
         type="file"         
         accept="image/png, image/jpeg, image/jpg"
         ></input>
+        </label>
         <button type="submit" >Submit</button>
 
         <h4>{this.props.message}</h4>
