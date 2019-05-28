@@ -16,7 +16,7 @@ export default class FileUpload extends Component {
     }
   render() {
     return (
-      <div>
+      <div className="maincontainer">
          <link
 					rel="StyleSheet"
 					type="text/css"

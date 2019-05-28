@@ -16,7 +16,7 @@ export default class Bubbles extends Component {
     }
   render() {
     return (
-      <div className="mainbubblecontainer">
+      <div className="mainbubblecontainer maincontainer">
          <link
 					rel="StyleSheet"
 					type="text/css"

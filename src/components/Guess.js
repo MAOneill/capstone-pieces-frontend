@@ -34,7 +34,7 @@ export default class Guess extends Component {
     }
   render() {
     return (
-      <div>
+      <div className="maincontainer">
             <link
 					rel="StyleSheet"
 					type="text/css"

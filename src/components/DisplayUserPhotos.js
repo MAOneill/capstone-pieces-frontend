@@ -29,7 +29,7 @@ render() {
   return (
     
       
-    <div className="photoComponent">  
+    <div className="photoComponent ">  
         
     <div className="photogrid">
 

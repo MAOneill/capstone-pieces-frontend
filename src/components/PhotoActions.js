@@ -9,10 +9,10 @@ export default function PhotoActions(props) {
              : <h5>Select A Photo to Use.</h5> }
             {props.selectedPhoto ?
             <div>
-            <Link className="navelement bright"
+            <Link className="navelement photoaction "
             to="/puzzle">Create a Puzzle</Link>
-            <Link className="navelement bright"
-            to="/bubbles">Bubble-fy it</Link>
+            <Link className="navelement photoaction"
+            to="/bubbles">Bubbles!</Link>
             </div>
             : null
             }

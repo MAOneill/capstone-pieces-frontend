@@ -31,7 +31,12 @@ export default class Puzzle extends Component {
         return (
 			
 				
-			<div className="puzzleboard">
+			<div className="puzzleboard maincontainer">
+				 <link
+					rel="StyleSheet"
+					type="text/css"
+					href='../styles/puzzle.css'
+				/>
             <div className="thepuzzleContainer">
 			
 
@@ -61,7 +66,7 @@ export default class Puzzle extends Component {
 								))}
 
 				</defs>
-				<rect width="400px" height="400px" stroke="white" fill="white"/>
+				<rect width="400px" height="400px" stroke="white" fill="#f5eeb2"/>
 {/* all the paths go here...should be the same viewBox size as parent svg... */}
 				{this.state.dataObject.map((piece,i) => (
 					<PuzzlePiece 

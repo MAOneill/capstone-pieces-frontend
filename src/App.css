@@ -41,6 +41,11 @@
   width:80vw;
   padding-top:20vh;
 }
+
+.maincontainer {
+  position: relative;
+  top:15px;
+}
 /* ********************** SVG PATTERNS - VISIBLE BUT TINY******************************************* */
 
 .defs {
@@ -88,11 +93,13 @@
   width:80vw;
   /* width can't be a percentage for the scroll box to work???? */
   overflow-x: scroll;
+  box-shadow: 0 3px 5px 0 #3a5044, 0 3px 5px 0 #3a5044;
 
 }
 .photogrid {
   display:flex;
   /* flex-wrap: wrap; */
+
 
 }
 .gridbox {
@@ -116,6 +123,16 @@
   background-color: rgb(241, 81, 81);
   color:white;
 }
+
+.photoaction {
+  background-color: #9ee4bd;
+  border-radius: 5px;
+  filter: brightness(1.2);
+  text-decoration: none;
+  color:#22262c;
+  margin:10px;
+  padding:5px;
+}
 /* ******************************  NAV ELEMENT ****************************************************** */
 
 
@@ -125,6 +142,8 @@
   width: 100%;
   background-color: #9ee4bd;
   padding: 5px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
 }
 .navelement {
   /* padding:5px; */
@@ -132,7 +151,7 @@
   margin:10px;
   color:#282c34;
   
-  color:white;
+  /* color:white; */
   /* margin: 5px; */
 }
 
@@ -192,7 +211,8 @@
 }
 .thepuzzleContainer {
   /* width:100%; */
-border:2px solid white;
+border:2px solid #5ae89a;
+box-shadow: 0 3px 5px 0 #86ab97, 0 3px 5px 0 #86ab97;
 /* margin:5px; */
 }
 .tinyphoto {
@@ -219,6 +239,7 @@ border:2px solid white;
 }
 .svgcontainer {
   border:2px #5ae89a solid;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   width:100%;
 }
 .guessingsize {
