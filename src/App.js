@@ -41,7 +41,7 @@ export default class App extends Component {
       <MenuBar />
       <Switch>
         {/* <Route exact path="/puzzle" component={Puzzle} /> */}
-        <Route exact path="/out"
+        <Route exact path="/"
           render={() => (
             <img className="piecesimage" src="./pieces.gif"></img>
           )} />
@@ -123,9 +123,9 @@ if (this.state.scoreAdded) {
 
       const credentials = await axios.get("/main/userid");
 
-      if (true) {
-      // if (credentials.userObject) {
-          // console.log("front end using axios to retrie4ve session user id: ", credentials.data.userObject);
+      // if (true) {
+      if (credentials.data.userObject) {
+          console.log("front end using axios to retrie4ve session user id: ", credentials.data.userObject);
     
           //if logged in, then get the user's pictures and scores.  save these to state
 
@@ -143,11 +143,12 @@ if (this.state.scoreAdded) {
           })
 
       }
+      //else if not logged in, there is no user object
       else {
         //this will only work when build is merged into backend
         // window.location = "http://localhost:3100/login"
         //use this in build:
-        // window.location = "/login"
+        window.location = "/login"
       }
 
   }

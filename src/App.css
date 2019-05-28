@@ -94,6 +94,7 @@
   /* width can't be a percentage for the scroll box to work???? */
   overflow-x: scroll;
   box-shadow: 0 3px 5px 0 #3a5044, 0 3px 5px 0 #3a5044;
+  background-color: #f5eeb2;
 
 }
 .photogrid {
