@@ -35,13 +35,15 @@ render() {
 
         {this.props.photos.length ? 
             this.props.photos.map((photo,i)=> (
-                <div key={i} className="gridbox">
+                <div key={i} className="gridbox photoscroll">
                 <div className="eachphoto">
+                    <label>
                 <img className="photoThumb" src={`./${photo.photoURL}`} alt="user supplied"></img>
                 <input type="radio" name="photoToUse" value={photo.photoURL} 
                     onClick={(e) => {
                         this.props.handleSelectPhoto(e.target.value)
                     }}/> 
+                    </label>
                     <br />
                 <button className="deletephoto"
                     onClick={ async () => {

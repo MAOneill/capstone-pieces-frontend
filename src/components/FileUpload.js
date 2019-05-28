@@ -17,6 +17,11 @@ export default class FileUpload extends Component {
   render() {
     return (
       <div>
+         <link
+					rel="StyleSheet"
+					type="text/css"
+					href='../styles/fileupload.css'
+				/>
          <form id="myform" 
         //  this creates a reference in react to my form element, so I can reset it.
          ref={form => this.form = form}

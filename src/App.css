@@ -25,6 +25,8 @@
 
 .App-header , body , .App {
   background-color: #282c34;
+  background-color: #b364f0;
+
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -35,6 +37,10 @@
   color: white;
 }
 
+.piecesimage {
+  width:80vw;
+  padding-top:20vh;
+}
 /* ********************** SVG PATTERNS - VISIBLE BUT TINY******************************************* */
 
 .defs {
@@ -116,10 +122,15 @@
 .nav {
   position: absolute;
   top:0;
+  width: 100%;
+  background-color: #9ee4bd;
+  padding: 5px;
 }
 .navelement {
   /* padding:5px; */
-  padding: 0 5px 0 5px;
+  /* padding: 0 5px 0 5px; */
+  margin:10px;
+  color:#282c34;
   
   color:white;
   /* margin: 5px; */
@@ -135,7 +146,9 @@
 }
 .topnav {
   background-color: rgb(0, 195, 255);
- filter: brightness(1.1);
+  background-color: #9ee4bd;
+
+ /* filter: brightness(1.1); */
  text-decoration: none;
  color:black;
  margin:5px;
@@ -145,6 +158,10 @@
   background-color:grey;
  filter: brightness(.8);
  text-decoration: none;
+
+}
+.tinypuzzlepiece {
+  width:15px;
 
 }
 
@@ -196,11 +213,12 @@ border:2px solid white;
   /* display: grid; */
   display:flex;
   justify-content: space-around;
+  
 
   /* grid-template-columns: 60% 40%; */
 }
 .svgcontainer {
-  border:2px yellow solid;
+  border:2px #5ae89a solid;
   width:100%;
 }
 .guessingsize {

@@ -6,7 +6,6 @@ import photos from '../guessing';
 import {post} from 'axios';
 // import {Link} from 'react-router-dom'
 
-
 export default class Guess extends Component {
     constructor(props) {
         super(props);
@@ -36,7 +35,11 @@ export default class Guess extends Component {
   render() {
     return (
       <div>
-            
+            <link
+					rel="StyleSheet"
+					type="text/css"
+					href='../styles/guess.css'
+				/>
         <div className="defs">
                 <svg id="patterns"  
                 style={{opacity:((this.state.numberTurns % 2) ? 1 : .99)}}

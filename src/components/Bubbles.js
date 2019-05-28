@@ -17,7 +17,11 @@ export default class Bubbles extends Component {
   render() {
     return (
       <div className="mainbubblecontainer">
-        
+         <link
+					rel="StyleSheet"
+					type="text/css"
+					href='../styles/bubble.css'
+				/>
             
         <div className="defs" >
             <svg id="patterns" 
