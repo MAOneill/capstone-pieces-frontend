@@ -41,10 +41,6 @@ export default class App extends Component {
       <MenuBar />
       <Switch>
         {/* <Route exact path="/puzzle" component={Puzzle} /> */}
-        <Route exact path="/"
-          render={() => (
-            <img className="piecesimage" src="./pieces.gif"></img>
-          )} />
         <Route exact path="/bubbles" 
               render={(props)=> (
                 <Bubbles userPhoto={this.state.selectedPhoto}/>
@@ -87,6 +83,13 @@ export default class App extends Component {
 
         )
                 }   />
+
+{/* leave exact and path out for a default... */}
+<Route 
+          render={() => (
+            <img className="piecesimage" src="./pieces.gif"></img>
+          )} />
+
 
       </Switch>
       {/* </header> */}
