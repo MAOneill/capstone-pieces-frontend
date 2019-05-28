@@ -134,6 +134,16 @@
   margin:10px;
   padding:5px;
 }
+.gridmessage {
+  /* width:300px; */
+  height:260px;
+  padding:10px;
+}
+.nophotomessage {
+  color:#22262c;
+width:100%;
+text-align: center;
+}
 /* ******************************  NAV ELEMENT ****************************************************** */
 
 

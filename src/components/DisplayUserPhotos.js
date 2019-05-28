@@ -31,10 +31,10 @@ render() {
       
     <div className="photoComponent ">  
         
+        {this.props.photos.length ? 
     <div className="photogrid">
 
-        {this.props.photos.length ? 
-            this.props.photos.map((photo,i)=> (
+            {this.props.photos.map((photo,i)=> (
                 <div key={i} className="gridbox photoscroll">
                 <div className="eachphoto">
                     <label>
@@ -61,19 +61,19 @@ render() {
                 {/* <h5>{photo.photoURL}</h5> */}
                 </div>
                 </div>
-                
-            ))
+            ))}
+                </div>   
         : null
         }
         {(this.props.photos.length === 0) ? 
-        <div className="gridbox">
-            <div className = "eachphoto">
-                <h4>You don't have any pictures</h4>
-                </div>
+        <div className="gridmessage">
+           
+                <h4 className="nophotomessage">You don't have any pictures. Add Some.</h4>
+               
          </div>:
         null}
     
-    </div>
+   
     </div>
     
   )}
