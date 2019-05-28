@@ -37,11 +37,11 @@ export default class Puzzle extends Component {
 					type="text/css"
 					href='../styles/puzzle.css'
 				/>
-            <div className="thepuzzleContainer">
+            <div className="thepuzzleContainer" ref={this.puzzlesvg}>
 			
 
 				<svg className="puzzlesvg"  
-				ref={this.puzzlesvg}
+				
 							// draggable="true"
 								key={(new Date().getTime())}
 								// viewBox={`0 0 700 700` }
@@ -129,7 +129,7 @@ componentDidMount() {
 // 	this.puzzlesvg.current.parentElement.offsetTop,
 // 	this.puzzlesvg.current.parentElement.offsetLeft,
 // 	);
-	console.log(this.puzzlesvg);
+	console.log("PUZZLESVG", this.puzzlesvg);
 	const myImage = new Image(this.state.imageLoadSize,this.state.imageLoadSize);   
     myImage.src="";
     
