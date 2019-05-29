@@ -31,7 +31,7 @@ export default class MenuBar extends Component {
       }
       id="menulist" className="displaymenuonclick hidemenu">
         <li><a className="navelement topnav" href="/logout">Logout</a></li>
-    <li><Link className="navelement topnav" to="/">Menu</Link></li>
+    <li><Link className="navelement topnav" to="/">Main</Link></li>
     <li><Link className="navelement topnav" to="/puzzle">Puzzle</Link></li>
     <li><Link className="navelement topnav" to="/bubbles">Bubbles</Link></li>
     <li><Link className="navelement topnav" to="/guess">Guessing Game</Link></li>
@@ -48,7 +48,7 @@ export default class MenuBar extends Component {
 
 <a className="navelement topnav" href="/logout">Logout</a>
 <img className="tinypuzzlepiece" src="./default/puzzlepiece.png" alt="tiny puzzle piece"></img>
-<Link className="navelement topnav" to="/">Menu</Link>
+<Link className="navelement topnav" to="/">Main</Link>
 <img className="tinypuzzlepiece" src="./default/puzzlepiece.png" alt="tiny puzzle piece"></img>
 {/* logout will still need to be a component...in didMount: it will do a window.location to /login */}
 <Link className="navelement topnav" to="/puzzle">Puzzle</Link>
