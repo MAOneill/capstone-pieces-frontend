@@ -120,7 +120,7 @@ export default class Bubbles extends Component {
   
   componentDidMount() {
 //   }
-  
+// document.getElementById("menulist").classList.add("hidemenu")
 //   _imgOnLoad =  () => {
       console.log("Image Loaded");
 // let testARray = createRandomArray(100);

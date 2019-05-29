@@ -100,6 +100,8 @@ export default class App extends Component {
     )
   }
 async componentDidUpdate () {
+
+
 if (this.state.photoAdded) {
       const pictureArray = await axios.get("main/getphotos");
       // console.log("get picture ARray ran");
@@ -125,7 +127,9 @@ if (this.state.scoreAdded) {
   async componentDidMount() {
 
     //retrieve the userObject and pass it to state.
-
+  
+  
+  
 
       const credentials = await axios.get("/main/userid");
 

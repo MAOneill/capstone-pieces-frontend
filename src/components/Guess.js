@@ -175,6 +175,11 @@ _newGame = () => {
 
 }
 componentDidMount() {
+
+   
+        // document.getElementById("menulist").classList.add("hidemenu")
+    
+
     //select a random picture to load
     const photoOrder = createRandomArray(this.state.photos.length,true); //zero indexed
     console.log(photoOrder)

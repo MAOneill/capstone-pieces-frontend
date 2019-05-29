@@ -46,6 +46,9 @@ export default class FileUpload extends Component {
 
   }
   async componentDidMount() {
+    
+      // document.getElementById("menulist").classList.add("hidemenu")
+  
 
 
     const url = "/main";

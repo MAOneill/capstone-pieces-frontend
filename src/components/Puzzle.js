@@ -125,6 +125,11 @@ _selectedPiece = (pat) => {
 	})
 }
 componentDidMount() {
+
+
+		// document.getElementById("menulist").classList.add("hidemenu")
+	
+	
 // console.log(this.puzzlesvg, this.puzzlesvg.current.clientWidth, this.puzzlesvg.current.clientHeight, 
 // 	this.puzzlesvg.current.parentElement.offsetTop,
 // 	this.puzzlesvg.current.parentElement.offsetLeft,
