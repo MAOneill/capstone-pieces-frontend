@@ -85,7 +85,7 @@ export default class App extends Component {
                 }   />
 
 {/* leave exact and path out for a default... */}
-<Route exact path="/" 
+<Route 
           render={() => (
            
 
