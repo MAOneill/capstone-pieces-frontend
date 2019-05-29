@@ -85,9 +85,12 @@ export default class App extends Component {
                 }   />
 
 {/* leave exact and path out for a default... */}
-<Route 
+<Route exact path="/" 
           render={() => (
-            <img className="piecesimage" src="./pieces.gif"></img>
+           
+
+              <img className="piecesimage" src="./pieces.gif"></img>
+           
           )} />
 
 
