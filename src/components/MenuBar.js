@@ -9,6 +9,7 @@ export default function MenuBar(props) {
 
 
 {/* <Link className="navelement topnav" to="/logout">Logout</Link> */}
+<img className="logo" src="./default/pieces2.png" />
 <a className="navelement topnav" href="/logout">Logout</a>
 <img className="tinypuzzlepiece" src="./default/puzzlepiece.png" alt="tiny puzzle piece"></img>
 <Link className="navelement topnav" to="/">Menu</Link>
@@ -21,6 +22,7 @@ export default function MenuBar(props) {
 <Link className="navelement topnav" to="/guess">Guessing Game</Link>
 <img className="tinypuzzlepiece" src="./default/puzzlepiece.png" alt="tiny puzzle piece"></img>
 <Link className="navelement topnav" to="/uploadphotos">Change Images</Link>
+<img className="logoright" src="./default/pieces2.png" />
 
     </div>
   )

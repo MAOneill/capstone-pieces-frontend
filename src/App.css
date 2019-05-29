@@ -146,7 +146,15 @@ text-align: center;
 }
 /* ******************************  NAV ELEMENT ****************************************************** */
 
-
+.logo {
+  float:left;
+  height:30px;
+}
+.logoright {
+  float:right;
+  height:30px;
+  visibility: hidden;
+}
 .nav {
   position: absolute;
   top:0;
