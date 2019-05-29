@@ -89,7 +89,7 @@ export default class App extends Component {
           render={() => (
            
 
-              <img className="piecesimage" src="./pieces.gif"></img>
+              <img className="piecesimage" src="./default/pieces.gif"></img>
            
           )} />
 
