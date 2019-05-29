@@ -22,7 +22,8 @@ export default class MenuBar extends Component {
   onClick={() =>
     document.getElementById("menulist").classList.toggle("hidemenu")
   }
-  >MENU
+  >
+  <img className="menuimg" src="./default/menu.png"></img>
   </div>
   <div>
       <ul onClick={() =>

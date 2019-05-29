@@ -180,6 +180,12 @@ text-align: center;
   top:0;
   right:10px;
 }
+.menuimg {
+  height:30px;
+  float:right;
+  padding-top:5px;
+
+}
 .logoright {
   float:right;
   height:30px;

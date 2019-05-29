@@ -195,8 +195,8 @@ _handleMouseMove = (e) => {
                 // console.log("moving") 
                 let bordercolor="";
                 let strokecolor="red"
-                let xmove= (-this.state.origX  + ((clientX -this.state.svgOffSetLeft) * 700/this.state.svgWidth) )
-                let ymove =( -this.state.origY  + ((clientY -this.state.svgOffsetTop) * 500/this.state.svgHeight) )
+                let xmove= (-this.state.origX  + ((clientX -this.state.svgOffSetLeft) * 700/this.state.svgWidth) ) -20
+                let ymove =( -this.state.origY  + ((clientY -this.state.svgOffsetTop) * 500/this.state.svgHeight) ) -20
                 
                 //if the pice is within 5 pixels of the origin, set the move offset to zero:
                 if ((xmove < 5) && (xmove > -5)) {
