@@ -10,16 +10,16 @@ export default function MenuBar(props) {
 
 {/* <Link className="navelement topnav" to="/logout">Logout</Link> */}
 <a className="navelement topnav" href="/logout">Logout</a>
-<img className="tinypuzzlepiece" src="./puzzlepiece.png" alt="tiny puzzle piece"></img>
+<img className="tinypuzzlepiece" src="./default/puzzlepiece.png" alt="tiny puzzle piece"></img>
 <Link className="navelement topnav" to="/">Menu</Link>
-<img className="tinypuzzlepiece" src="./puzzlepiece.png" alt="tiny puzzle piece"></img>
+<img className="tinypuzzlepiece" src="./default/puzzlepiece.png" alt="tiny puzzle piece"></img>
 {/* logout will still need to be a component...in didMount: it will do a window.location to /login */}
 <Link className="navelement topnav" to="/puzzle">Puzzle</Link>
-<img className="tinypuzzlepiece" src="./puzzlepiece.png" alt="tiny puzzle piece"></img>
+<img className="tinypuzzlepiece" src="./default/puzzlepiece.png" alt="tiny puzzle piece"></img>
 <Link className="navelement topnav" to="/bubbles">Bubbles</Link>
-<img className="tinypuzzlepiece" src="./puzzlepiece.png" alt="tiny puzzle piece"></img>
+<img className="tinypuzzlepiece" src="./default/puzzlepiece.png" alt="tiny puzzle piece"></img>
 <Link className="navelement topnav" to="/guess">Guessing Game</Link>
-<img className="tinypuzzlepiece" src="./puzzlepiece.png" alt="tiny puzzle piece"></img>
+<img className="tinypuzzlepiece" src="./default/puzzlepiece.png" alt="tiny puzzle piece"></img>
 <Link className="navelement topnav" to="/uploadphotos">Change Images</Link>
 
     </div>

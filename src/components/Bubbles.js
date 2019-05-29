@@ -67,7 +67,7 @@ export default class Bubbles extends Component {
             {/* <img  id="myimg" onLoad={this._imgOnLoad} src={`./${this.state.imageToUse}`} alt="user supplied"></img> */}
                 {this.props.userPhoto ? 
                 <img  id="myimg" onLoad={this._imgOnLoad} src={`./${this.props.userPhoto}`} alt="user supplied"></img>
-                : <img id="myimg" onLoad={this._imgOnLoad} src="./photos/sharks.jpg" alt="default "></img>
+                : <img id="myimg" onLoad={this._imgOnLoad} src="./default/sharks.jpg" alt="default "></img>
                 }
             {/* allow user to change the number of bubbles */}
             <div className="bubbleoptions">
@@ -106,7 +106,7 @@ export default class Bubbles extends Component {
                         }) 
                   }
                   
-                  this.props.userPhoto ?  myImage.src = `./${this.props.userPhoto}` : myImage.src =`./photos/sharks.jpg`   ;
+                  this.props.userPhoto ?  myImage.src = `./${this.props.userPhoto}` : myImage.src =`./default/sharks.jpg`   ;
                
 
             }} />
@@ -167,7 +167,7 @@ export default class Bubbles extends Component {
             }) 
       }
       
-      this.props.userPhoto ?  myImage.src = `./${this.props.userPhoto}` : myImage.src =`./photos/sharks.jpg`   ;
+      this.props.userPhoto ?  myImage.src = `./${this.props.userPhoto}` : myImage.src =`./default/sharks.jpg`   ;
    
     }
 }

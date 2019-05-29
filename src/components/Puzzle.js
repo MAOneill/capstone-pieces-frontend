@@ -109,7 +109,7 @@ export default class Puzzle extends Component {
 				
 			{this.props.userPhoto ? 
                 <img  id="myimg" onLoad={this._imgOnLoad} src={`./${this.props.userPhoto}`} alt="user supplied"></img>
-                : <img id="myimg" onLoad={this._imgOnLoad} src="./photos/sharks.jpg" alt="default "></img>
+                : <img id="myimg" onLoad={this._imgOnLoad} src="./default/sharks.jpg" alt="default "></img>
                 }
 			</div>
 			<h6 className="turnphone">This really look better if you turn your phone sideways.</h6>
@@ -157,7 +157,7 @@ componentDidMount() {
             }) 
       }
       
-      this.props.userPhoto ?  myImage.src = `./${this.props.userPhoto}` : myImage.src =`./photos/sharks.jpg`   ;
+      this.props.userPhoto ?  myImage.src = `./${this.props.userPhoto}` : myImage.src =`./default/sharks.jpg`   ;
    
 }
 }
