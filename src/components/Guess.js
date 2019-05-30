@@ -257,8 +257,7 @@ _submitAnswer = (e) => {
     
     else if (parseInt(this.state.guessSelection) === parseInt(this.state.photoKey)) {
         //20th round:
-        ///NEED TO INCREASE THIS WHEN I HAVE 20 PICTURES
-        if (this.state.numberTurns === 10) {
+        if (this.state.numberTurns === 18) {
             
             //you win 
             this.setState({
