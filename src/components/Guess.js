@@ -259,6 +259,8 @@ _submitAnswer = (e) => {
         //20th round:
         if (this.state.numberTurns === 18) {
             
+            this._addScore(this.state.numberCorrect + 1)
+
             //you win 
             this.setState({
                 message:"You Won.  Play Again.",
@@ -266,7 +268,6 @@ _submitAnswer = (e) => {
                 isGameOver:true,
                 
             })
-            this._addScore(this.setState.numberCorrect + 1)
 
 
         }
