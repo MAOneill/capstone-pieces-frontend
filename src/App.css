@@ -164,6 +164,9 @@ text-align: center;
   position: absolute;
   right:0;
   background-color:#9ee4bd;
+  top:15px;
+  font-size: 180%;
+  padding:3px;
 }
 .displaymenuonclick li {
   list-style-type: none;
