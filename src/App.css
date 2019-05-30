@@ -91,6 +91,7 @@
 .photoComponent{
   /* width:600px; */
   width:80vw;
+  margin:auto;
   /* width can't be a percentage for the scroll box to work???? */
   overflow-x: scroll;
   box-shadow: 0 3px 5px 0 #3a5044, 0 3px 5px 0 #3a5044;
@@ -99,6 +100,7 @@
 }
 .photogrid {
   display:flex;
+  overflow-x:scroll;
   /* flex-wrap: wrap; */
 
 
