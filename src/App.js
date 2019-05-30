@@ -158,7 +158,7 @@ if (this.state.scoreAdded) {
         //this will only work when build is merged into backend
         // window.location = "http://localhost:3100/login"
         //use this in build:
-        window.location = "/"
+        window.location = "/welcome"
       }
 
   }
