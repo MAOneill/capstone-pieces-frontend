@@ -18,7 +18,7 @@ Axios, PostgreSQL, node.js, express.js, sharp, bcrypt, and dotenv were implement
 
 One of the biggest challenges for this project was ensuring cross-browser compatibility.  Safari was particularly difficult, and I learned that the safari platform has much stricter rules for SVG images and patterns than Chrome or Firefox.  The math used to calculate the puzzle piece location was particularly difficult, especially since SVG elements do not support “drag” events.
 
-## Backend code can be found here https://github.com/MAOneill/capstone-bubblefier-backend
+## Backend code can be found here https://github.com/MAOneill/capstone-pieces-backend
 
 
 
